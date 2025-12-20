@@ -141,16 +141,15 @@ const Footer = () => {
         {/* Contact Info */}
         <ContactInfo>
           <h3>Contact</h3>
-          <p>Phone: +91-12345-67890</p>
-          <p>Email: info@navbodhtower.com</p>
-          <p>Address: 123 Business Street, Raipur, Chhattisgarh</p>
+          <p>Phone: 075910 66666</p>
+          <p>Email: construction@navbodh.com</p>
+          <p>Address: 2, Geetanjali Colony, Shankar Nagar, Raipur, Chhattisgarh 492001</p>
 
           {/* Social Media */}
           <SocialMedia>
-            <a href="#"><FaFacebookF /></a>
-            <a href="#"><FaInstagram /></a>
-            <a href="#"><FaLinkedinIn /></a>
-            <a href="#"><FaTwitter /></a>
+            <a href="https://www.facebook.com/61578848643690/about/"><FaFacebookF /></a>
+            <a href="https://www.instagram.com/navbodh_construction?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><FaInstagram /></a>
+          
           </SocialMedia>
         </ContactInfo>
       </TopSection>
