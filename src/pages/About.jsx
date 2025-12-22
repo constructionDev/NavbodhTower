@@ -2,55 +2,82 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import brochure from "../assets/brochure.pdf";
-import Footer from "../components/Footer"; // Import the footer
+import Footer from "../components/Footer";
+import bgVideo from '../assets/bg.mp4';
 
 // ================= CONTAINER =================
-const Container = styled.div`
-  padding: 2rem 5%;
-`;
+const Container = styled.div``;
 
 // ================= HERO =================
-const Hero = styled.section`
+const HeroVideoWrapper = styled.section`
+  position: relative;
+  width: 100vw;
+  min-height: 60vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  min-height: 50vh;
+
+  @media (max-width: 768px) {
+    min-height: 40vh;
+  }
+`;
+
+const HeroVideo = styled.video`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const VideoOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.65),
+    rgba(0, 0, 0, 0.35)
+  );
+`;
+
+const HeroContent = styled.div`
+  position: relative;
+  z-index: 2;
   text-align: center;
-  padding: 3rem 1rem;
+  color: #fff;
+  padding: 2rem 1rem;
 `;
 
 const Title = styled.h1`
-  font-size: 3rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.primary};
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
 `;
 
 const Subtitle = styled.p`
-  font-size: 1.3rem;
-  line-height: 1.6;
-  color: ${({ theme }) => theme.text};
-  max-width: 600px;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
-const BrochureSection = styled.section`
-  margin-top: 2rem;
+// ================= BROCHURE DOWNLOAD =================
+const BrochureSection = styled.div`
+  text-align: center;
+  margin: 2rem 0;
 `;
 
 const DownloadButton = styled.a`
-  background: ${({ theme }) => theme.primary};
+  display: inline-block;
+  background-color: ${({ theme }) => theme.primary};
   color: #fff;
-  padding: 0.7rem 1.5rem;
-  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
   text-decoration: none;
-  font-weight: 500;
-  cursor: pointer;
+  font-weight: 600;
   transition: all 0.3s ease;
 
   &:hover {
-    opacity: 0.85;
-    transform: translateY(-3px);
+    background-color: ${({ theme }) => theme.primaryHover || "#ff6600"};
   }
 `;
 
@@ -89,12 +116,14 @@ const ServiceCard = styled(motion.div)`
   transition: all 0.3s ease;
 `;
 
-const ServiceTitle = styled.h3`
+const CardTitle = styled.h3`
   color: ${({ theme }) => theme.primary};
+  font-size: 1.2rem;
+  margin-bottom: 8px;
 `;
 
-const ServiceDesc = styled.p`
-  font-size: 0.95rem;
+const CardDesc = styled.p`
+  font-size: 1rem;
   color: ${({ theme }) => theme.text};
   margin-top: 0.5rem;
 `;
@@ -126,20 +155,69 @@ const Label = styled.p`
   color: ${({ theme }) => theme.text};
 `;
 
-// ================= TEAM CARD =================
-const TeamCard = styled(motion.div)`
+// ================= FOUNDER SECTION =================
+const FounderSectionWrapper = styled(Section)`
   background: ${({ theme }) => theme.cardBackground};
-  padding: 1.5rem;
+  padding: 4rem 2rem;
   border-radius: 15px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
 `;
 
-const TeamImg = styled.img`
-  width: 100px;
+const FounderCard = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: all 0.3s ease;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    text-align: left;
+  }
+`;
+
+const FounderImg = styled.img`
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  border: 5px solid ${({ theme }) => theme.primary};
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+    margin-right: 2rem;
+  }
+`;
+
+const FounderInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const FounderName = styled.h3`
+  font-size: 2rem;
+  color: ${({ theme }) => theme.primary};
+  margin-bottom: 0.5rem;
+`;
+
+const FounderRole = styled.p`
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.text};
   margin-bottom: 1rem;
+`;
+
+const FounderAbout = styled.p`
+  font-size: 1rem;
+  color: ${({ theme }) => theme.text};
+  line-height: 1.6;
 `;
 
 // ================= MAP =================
@@ -159,68 +237,105 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
+// ================= FOUNDER DATA =================
+const founder = {
+  name: "John Doe",
+  role: "Founder & CEO",
+  image: "https://picsum.photos/300?random=1", // bigger image
+  about: "John has over 10 years of experience in tech and entrepreneurship. He is passionate about building innovative solutions that make a difference."
+};
+
 // ================= ABOUT PAGE =================
 const About = () => {
-  const services = [
-    { title: "Office Spaces", desc: "Modern and flexible office spaces." },
-    { title: "Retail Spaces", desc: "High footfall retail showrooms." },
-    { title: "Corporate Buildings", desc: "Spacious corporate setups." },
-    { title: "Custom Leasing", desc: "Tailored leasing solutions." },
-    { title: "Legal Support", desc: "Documentation & legal guidance." },
-  ];
+ const services = [
+  {
+    title: "Office Spaces",
+    desc: "Well-planned and modern office spaces ideal for startups, professionals, and corporates."
+  },
+  {
+    title: "Retail & Showroom Spaces",
+    desc: "Prime retail spaces with excellent visibility and high customer footfall."
+  },
+  {
+    title: "Corporate Setups",
+    desc: "Spacious commercial floors suitable for banks, consultancies, and large enterprises."
+  },
+  {
+    title: "Customizable Layouts",
+    desc: "Flexible floor plans that can be customized as per your business requirements."
+  },
+  {
+    title: "Flexible Leasing",
+    desc: "Business-friendly rental options for small and large enterprises."
+  },
+  {
+    title: "Modern Amenities",
+    desc: "High-speed lifts, ample parking and advanced fire safety systems."
+  },
+  {
+    title: "Prime Location Advantage",
+    desc: "Located in Shankar Nagar, Raipur with excellent connectivity and brand visibility."
+  }
+];
 
-  const whyUs = [
-    "Prime Locations",
-    "Transparent Pricing",
-    "Flexible Lease Terms",
-    "Professional Property Management",
-    "End-to-End Support",
-  ];
 
-  const processSteps = [
-    "Understand Business Requirements",
-    "Property Shortlisting",
-    "Site Visits",
-    "Negotiation & Documentation",
-    "Move-In Support",
-  ];
+const whyUs = [
+  "Prime location in Shankar Nagar, Raipur",
+  "Government approved commercial project",
+  "Modern infrastructure with high-speed lifts",
+  "Flexible commercial spaces for offices, banks & clinics",
+  "Ample parking with CCTV & fire safety systems",
+  "Trusted by reputed brands and professionals",
+  "Excellent visibility for branding and footfall",
+  "Business-friendly environment with professional tenants",
+];
 
-  const achievements = [
-    { number: "10+", label: "Years of Experience" },
-    { number: "50+", label: "Commercial Units" },
-    { number: "200+", label: "Satisfied Clients" },
-    { number: "5+", label: "Locations" },
-  ];
 
-  const team = [
-    { name: "Mr. Navin Patidar", role: "Founder & Director" },
-    { name: "Anjali Sharma", role: "Property Manager" },
-    { name: "Rahul Singh", role: "Sales Consultant" },
-  ];
+
+ const processSteps = [
+  "Inquiry & Requirement Understanding",
+  "Site Visit & Space Selection",
+  "Customization & Planning",
+  "Transparent Documentation",
+  "Finalization & Handover",
+  "Ongoing Support",
+];
+
+
+const achievements = [
+
+  { number: "Trusted", label: "By Leading Brands & Professionals" },
+  { number: "Prime", label: "Commercial Location in Raipur" },
+  { number: "G+3", label: "Floors of Modern Commercial Space" },
+  { number: "100%", label: "Operational & Occupied Building" },
+  { number: "Modern", label: "Infrastructure, Safety & Compliance" },
+];
+
+
 
   return (
     <Container>
       {/* HERO */}
-      <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.8 }}>
-        <Hero>
-          <Title>About Navbodh Tower</Title>
-          <Subtitle>Building the right spaces for growing businesses</Subtitle>
-          <BrochureSection>
-            <DownloadButton href={brochure} download>
-              Download Company Brochure
-            </DownloadButton>
-          </BrochureSection>
-        </Hero>
-      </motion.div>
+      <HeroVideoWrapper>
+        <HeroVideo src={bgVideo} autoPlay muted loop playsInline />
+        <VideoOverlay />
+        <HeroContent>
+          <motion.div initial="hidden" animate="visible" variants={fadeUp}>
+            <Title>About Navbodh Tower</Title>
+            <Subtitle>
+              Building the right spaces for growing businesses in Raipur, Chhattisgarh.
+            </Subtitle>
+          </motion.div>
+        </HeroContent>
+      </HeroVideoWrapper>
 
       {/* COMPANY OVERVIEW */}
       <Section>
         <SectionTitle>Company Overview</SectionTitle>
         <SectionSubtitle>
-          Navbodh Tower is a commercial real estate company based in Raipur,
-          Chhattisgarh, specializing in premium office spaces, retail showrooms,
-          and corporate buildings. We serve startups, SMEs, and established
-          enterprises looking for reliable and well-located business spaces.
+       
+
+Navbodh Tower    A Unique Commercial Hub is a modern, government-approved commercial complex designed to meet the needs of today’s businesses. Strategically located in Shankar Nagar, Raipur (C.G.), it offers premium commercial spaces with excellent visibility, connectivity, and infrastructure
         </SectionSubtitle>
       </Section>
 
@@ -235,11 +350,10 @@ const About = () => {
             variants={fadeUp}
             whileHover={{ scale: 1.05, y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
           >
-            <ServiceTitle>Mission</ServiceTitle>
-            <ServiceDesc>
-              To provide flexible, transparent, and premium commercial spaces
-              that support business growth.
-            </ServiceDesc>
+            <CardTitle>🎯 Our Mission</CardTitle>
+            <CardDesc>
+             To provide high-quality, well-planned, and future-ready commercial spaces that empower businesses to grow and succeed. At Navbodh Tower, our mission is to create a secure, professional, and accessible business environment through modern infrastructure, strategic location, and customer-focused flexibility.
+            </CardDesc>
           </ServiceCard>
           <ServiceCard
             initial="hidden"
@@ -248,11 +362,10 @@ const About = () => {
             variants={fadeUp}
             whileHover={{ scale: 1.05, y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
           >
-            <ServiceTitle>Vision</ServiceTitle>
-            <ServiceDesc>
-              To become the most trusted commercial real estate brand in
-              Central India.
-            </ServiceDesc>
+            <CardTitle>🌟 Our Vision</CardTitle>
+            <CardDesc>
+           To become a landmark commercial destination in Raipur, recognized for excellence in design, reliability, and business value. We envision Navbodh Tower as a hub where enterprises of all sizes thrive, innovation is encouraged, and long-term partnerships are built through trust and quality.
+            </CardDesc>
           </ServiceCard>
         </CardsContainer>
       </Section>
@@ -270,8 +383,8 @@ const About = () => {
               variants={fadeUp}
               whileHover={{ scale: 1.08, y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
             >
-              <ServiceTitle>{s.title}</ServiceTitle>
-              <ServiceDesc>{s.desc}</ServiceDesc>
+              <CardTitle>{s.title}</CardTitle>
+              <CardDesc>{s.desc}</CardDesc>
               <img
                 src={`https://picsum.photos/200?random=${i + 10}`}
                 alt={s.title}
@@ -295,7 +408,7 @@ const About = () => {
               variants={fadeUp}
               whileHover={{ scale: 1.08, y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
             >
-              <ServiceDesc>{w}</ServiceDesc>
+              <CardDesc>{w}</CardDesc>
             </ServiceCard>
           ))}
         </CardsContainer>
@@ -314,7 +427,7 @@ const About = () => {
               variants={fadeUp}
               whileHover={{ scale: 1.05, y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
             >
-              <ServiceDesc>{p}</ServiceDesc>
+              <CardDesc>{p}</CardDesc>
             </ProcessCard>
           ))}
         </CardsContainer>
@@ -333,31 +446,29 @@ const About = () => {
         </CardsContainer>
       </Section>
 
-      {/* TEAM */}
-      <Section>
-        <SectionTitle>Our Team</SectionTitle>
-        <CardsContainer>
-          {team.map((t, i) => (
-            <TeamCard
-              key={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              whileHover={{ scale: 1.05, y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
-            >
-              <TeamImg src={`https://picsum.photos/100?random=${i + 20}`} alt={t.name} />
-              <ServiceTitle>{t.name}</ServiceTitle>
-              <ServiceDesc>{t.role}</ServiceDesc>
-            </TeamCard>
-          ))}
-        </CardsContainer>
-      </Section>
+      {/* FOUNDER */}
+      <FounderSectionWrapper>
+        <SectionTitle>Our Founder</SectionTitle>
+        <FounderCard
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+          whileHover={{ scale: 1.02, boxShadow: "0 25px 50px rgba(0,0,0,0.2)" }}
+        >
+          <FounderImg src={founder.image} alt={founder.name} />
+          <FounderInfo>
+            <FounderName>{founder.name}</FounderName>
+            <FounderRole>{founder.role}</FounderRole>
+            <FounderAbout>{founder.about}</FounderAbout>
+          </FounderInfo>
+        </FounderCard>
+      </FounderSectionWrapper>
 
       {/* LOCATION & CONTACT */}
       <Section>
         <SectionTitle>Visit Us</SectionTitle>
-        <SectionSubtitle>Navbodh Tower | Raipur, Chhattisgarh</SectionSubtitle>
+        <SectionSubtitle>Navbodh Tower | Shankar Nagar, Raipur, Chhattisgarh</SectionSubtitle>
         <BrochureSection>
           <DownloadButton href={brochure} download>
             Download Company Brochure
@@ -380,3 +491,4 @@ const About = () => {
 };
 
 export default About;
+  
