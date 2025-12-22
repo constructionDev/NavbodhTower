@@ -219,7 +219,7 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <InfoTitle>Address</InfoTitle>
-            <InfoText>Navbodh Tower, Raipur, Chhattisgarh</InfoText>
+            <InfoText>Navbodh Tower | Shankar Nagar, Raipur, Chhattisgarh</InfoText>
           </InfoCard>
           <InfoCard
             variants={infoVariants}
@@ -228,8 +228,8 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <InfoTitle>Contact</InfoTitle>
-            <InfoText>Phone: +91 12345 67890</InfoText>
-            <InfoText>Email: info@navbodhtower.com</InfoText>
+            <InfoText>Phone: +91 7591 066 666</InfoText>
+            <InfoText>Email: construction@navbodh.com</InfoText>
           </InfoCard>
         </InfoSection>
 

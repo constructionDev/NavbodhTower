@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import Navbar from "./components/Navbar";
+import ScrollToTop from "./components/ScrollToTop"; 
 
 // Import your pages
 import Home from "./pages/Home";
@@ -53,6 +54,7 @@ function App() {
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyle />
       <Router>
+             <ScrollToTop /> 
         <Navbar theme={theme} toggleTheme={toggleTheme} />
         <Routes>
           <Route path="/" element={<Home />} />
