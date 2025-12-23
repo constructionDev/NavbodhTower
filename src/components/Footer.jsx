@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaMailBulk, FaTwitter } from "react-icons/fa";
+import { SiGmail } from "react-icons/si";
 
 // ======= FOOTER CONTAINER =======
 const FooterContainer = styled.footer`
@@ -149,7 +150,9 @@ const Footer = () => {
           <SocialMedia>
             <a href="https://www.facebook.com/61578848643690/about/"><FaFacebookF /></a>
             <a href="https://www.instagram.com/navbodh_construction?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><FaInstagram /></a>
-          
+           <a href="mailto:navbodhconstruction@gmail.com">
+  <SiGmail />
+</a>
           </SocialMedia>
         </ContactInfo>
       </TopSection>

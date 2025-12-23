@@ -1,28 +1,34 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import map from "../assets/map2.png";
+
 import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
   FaTwitter,
-  FaPhoneAlt
+  FaPhoneAlt,
 } from "react-icons/fa";
 
-import bgVideo from '../assets/bg.mp4';
-import img1 from '../assets/1.jpeg';
-import img2 from '../assets/2.jpeg';
-import img3 from '../assets/3.jpeg';
-import img4 from '../assets/4.jpeg';
+import tower from "../assets/banner.jpeg";
+import img1 from "../assets/1.jpeg";
+import img2 from "../assets/2.jpeg";
+import img3 from "../assets/3.jpeg";
+import img4 from "../assets/4.jpeg";
 import Lottie from "lottie-react";
-
+import HeroCarousel from "../components/HeroCarousel"
 import requirementAnimation from "../assets/lottie/requirement.json";
-import shortlistAnimation from  "../assets/lottie/shortlist.json";
-import siteVisitAnimation from  "../assets/lottie/site-visit3.json";
-import documentationAnimation from  "../assets/lottie/documentation.json";
+import shortlistAnimation from "../assets/lottie/shortlist.json";
+import siteVisitAnimation from "../assets/lottie/site-visit3.json";
+import documentationAnimation from "../assets/lottie/documentation.json";
 import testimonialAnimation from "../assets/lottie/profile.json";
-import ctaAnimation from "../assets/lottie/Customer Support.json"
-
+import ctaAnimation from "../assets/lottie/Customer Support.json";
+import  sq1500 from '../assets/1500.jpg';
+import sq3000  from '../assets/3000SQ.jpg';
+import premiumspace from "../assets/premiumspace.jpg";
+import RetailShowroom from "../assets/RetailShowroom.jpg";
+import Warehouse from "../assets/Warehouse.jpg";
 
 /* ================= ANIMATIONS ================= */
 const fadeUp = {
@@ -30,27 +36,46 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
+const slideInLeft = {
+  hidden: { opacity: 0, x: -100 },
+  visible: { opacity: 1, x: 0 },
+};
+
+const slideInRight = {
+  hidden: { opacity: 0, x: 100 },
+  visible: { opacity: 1, x: 0 },
+};
+
+
 /* ================= CONTAINER ================= */
 const Container = styled.div``;
 
 /* ================= SECTION ================= */
 const Section = styled.section`
-  margin: 5rem 0;
+  margin: 5rem 1.5rem;
+
+  @media (max-width: 600px) {
+    margin: 3rem 1rem;
+  }
 `;
 
+/* ================= SECTION TITLE ================= */
 const SectionTitle = styled.h2`
   text-align: center;
   color: ${({ theme }) => theme.primary};
-  margin-bottom: 2rem;
-
-  @media (max-width: 600px) {
-       font-size: 3rem;
-  }
+  margin-bottom: 2.5rem;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: 1px;
 `;
 
 /* ================= SPACER ================= */
 const Spacer = styled.div`
   height: 4rem;
+
+  @media (max-width: 600px) {
+    height: 3rem;
+  }
 `;
 
 /* ================= HERO VIDEO ================= */
@@ -60,93 +85,103 @@ const HeroVideoWrapper = styled.section`
   min-height: 100vh;
   display: flex;
   align-items: center;
+  overflow: hidden;
 
   @media (max-width: 768px) {
-    min-height: 53vh;
+    min-height: 55vh;
   }
 `;
 
-const HeroVideo = styled.video`
+const HeroVideo = styled.div`
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background: url(${tower}) center/contain no-repeat;
+  filter: brightness(0.65);
 `;
 
-const VideoOverlay = styled.div`
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.65),
-    rgba(0, 0, 0, 0.35)
-  );
-`;
-
+// const VideoOverlay = styled.div`
+//   position: absolute;
+//   inset: 0;
+//   background: linear-gradient(
+//     to right,
+//     rgba(11, 28, 45, 0.9),
+//     rgba(11, 28, 45, 0.55)
+//   );
+// `;
 const HeroContent = styled.div`
-  position: relative;
+   position: absolute; /* ensure it overlays the video/carousel */
+  inset: 0; /* top, right, bottom, left = 0 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center; /* horizontal center */
+  text-align: center; /* center text */
+  padding: 0 1.5rem;
   z-index: 2;
-  width: 100%;
 `;
 
 const HeroInner = styled.div`
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  align-items: center;
-  gap: 2rem;
-
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
+    max-width: 800px; /* optional, limits text width */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 `;
 
 const HeroTitle = styled(motion.h1)`
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  color: #fff;
+  font-size: clamp(2.6rem, 5vw, 3.8rem);
+  color: #f5b301;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
 `;
 
 const HeroSubtitle = styled(motion.p)`
-  font-size: 1.1rem;
-  color: #e5e7eb;
-  max-width: 600px;
+    font-size: 1.1rem;
+  color: #e0d09c;
   margin: 1rem 0;
+  text-align: center;
 
   @media (max-width: 900px) {
     margin: 1rem auto;
   }
 `;
 
-const HeroButtons = styled.div`
-  display: flex;
-  gap: 1rem;
 
-  @media (max-width: 900px) {
-    justify-content: center;
-  }
+const HeroButtons = styled.div`
+    display: flex;
+  gap: 1rem;
+  justify-content: center; /* center buttons horizontally */
+  flex-wrap: wrap; /* wrap on small screens */
 `;
 
 const Button = styled(motion.button)`
-  padding: 0.9rem 1.8rem;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.95rem;
+padding: 0.9rem 1.8rem;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    justify-content: center;
+    font-size: 1.2rem
+19.2px
+;
+    background: linear-gradient(135deg, #f5b301, #d99a00);
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(245, 179, 1, 0.35);
 
   background: ${({ primary }) =>
     primary
-      ? "linear-gradient(135deg, #4f46e5, #6366f1)"
-      : "#eee"};
+      ? "linear-gradient(135deg, #f5b301, #d99a00)"
+      : "#e5e7eb"};
 
-  color: ${({ primary }) => (primary ? "#fff" : "#333")};
+  color: ${({ primary }) => (primary ? "#0b1c2d" : "#111")};
+
+  box-shadow: ${({ primary }) =>
+    primary ? "0 12px 30px rgba(245,179,1,0.35)" : "none"};
 `;
 
 /* ================= SEARCH ================= */
@@ -155,19 +190,40 @@ const SearchBox = styled(motion.section)`
   padding: 1.5rem;
   border-radius: 20px;
   margin: 4rem auto;
+  max-width: 1200px;
+
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1rem;
+
+  @media (max-width: 600px) {
+    margin: 2rem 1rem;
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Select = styled.select`
   padding: 0.8rem;
   border-radius: 12px;
   border: 1px solid #ddd;
+  font-size: 1rem;
 `;
 
 /* ================= ABOUT NAVBODH TOWER ================= */
 
+const AboutImage = styled(motion.div)`
+  img {
+    width: 100%;
+    max-width: 550px;
+    border-radius: 20px;
+    object-fit: cover;
+    height: auto;
+  }
+
+  @media (max-width: 900px) {
+    margin-top: 1rem;
+  }
+`;
 
 const Highlights = styled.div`
   display: grid;
@@ -180,7 +236,7 @@ const HighlightCard = styled(motion.div)`
   background: ${({ theme }) => theme.background};
   padding: 1.2rem;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   text-align: center;
 
   h4 {
@@ -194,7 +250,6 @@ const HighlightCard = styled(motion.div)`
   }
 `;
 
-
 const MissionVision = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -206,7 +261,7 @@ const MVCard = styled(motion.div)`
   background: ${({ theme }) => theme.cardBackground};
   padding: 1.5rem;
   border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
   text-align: left;
 
   h3 {
@@ -219,15 +274,12 @@ const MVCard = styled(motion.div)`
     line-height: 1.6;
   }
 `;
-
-
-const AboutSection = styled(motion(Section))`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 2rem;
-  max-width: 1300px;
+const AboutSection = styled(motion.section)`
+   max-width: 1300px;
   margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
@@ -235,62 +287,146 @@ const AboutSection = styled(motion(Section))`
   }
 `;
 
-const AboutContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
+const AboutText = styled(motion.div)`
   h2 {
     color: ${({ theme }) => theme.primary};
+    font-size: clamp(1.8rem, 2.5vw, 2.5rem);
     margin-bottom: 1rem;
-        text-align: center;
-        font-size: 2rem;
   }
 
   p {
     color: ${({ theme }) => theme.text};
     line-height: 1.6;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    text-align: center;
   }
 `;
 
-const AboutImages = styled.div`
+const AboutRow = styled(motion.div)`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 2rem;
 
-  img {
-    width: 100%;
-    border-radius: 15px;
-    object-fit: cover;
-    height: 200px;
-
-    @media (max-width: 900px) {
-      height: 180px;
-    }
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    text-align: center;
   }
 `;
 
-const aboutImages = [
- img1,
- img2,
- img3,
- img4
+const AboutContent = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+
+  h2 {
+    color: ${({ theme }) => theme.primary};
+    margin-bottom: 0.5rem;
+    font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+  }
+
+  p {
+    color: ${({ theme }) => theme.text};
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    text-align: center;
+    padding: 0;
+  }
+`;
+
+const aboutContent = [
+  {
+    title: "About Navbodh Tower",
+    text: "Premium commercial spaces in Shankar Nagar, Raipur. Strategically located for business growth.",
+    image: img1,
+  },
+  {
+    title: "Prime Location",
+    text: "Located at the bustling Shankar Nagar commercial hub.",
+    image: img2,
+  },
+  {
+    title: "Modern Facilities",
+    text: "Elevators, 24/7 security, and ample parking spaces.",
+    image: img3,
+  },
+  {
+    title: "Flexible Spaces",
+    text: "Offices, retail, and corporate layouts tailored to your needs.",
+    image: img4,
+  },
 ];
+
+<AboutSection>
+
+  {aboutContent.map(({ title, text, image }, i) => (
+  
+    <AboutRow
+      key={i}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 1 }}
+    >
+      {i % 2 === 0 ? (
+        <>
+          <AboutText variants={slideInLeft}>
+            <h2>{title}</h2>
+            <p>{text}</p>
+          </AboutText>
+          <AboutImage variants={slideInRight}>
+            <img src={image} alt={title} />
+          </AboutImage>
+        </>
+      ) : (
+        <>
+          <AboutImage variants={slideInLeft}>
+            <img src={image} alt={title} />
+          </AboutImage>
+          <AboutText variants={slideInRight}>
+            <h2>{title}</h2>
+            <p>{text}</p>
+          </AboutText>
+        </>
+      )}
+    </AboutRow>
+  ))}
+</AboutSection>
+
+
+
+
+
+const aboutImages = [img1, img2, img3, img4];
 
 /* ================= CARDS ================= */
 const CardsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
+  max-width: 1300px;
+  margin: 0 auto 5rem auto;
 `;
 
 const Card = styled(motion.div)`
   background: ${({ theme }) => theme.cardBackground};
-  padding: 1.5rem;
-  border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  padding: 1.8rem;
+  border-radius: 22px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
   overflow: hidden;
   cursor: pointer;
+
+  @media (max-width: 600px) {
+    padding: 1.5rem;
+  }
 `;
 
 const CardImage = styled.img`
@@ -306,6 +442,7 @@ const CardImage = styled.img`
 
 const CardTitle = styled.h3`
   color: ${({ theme }) => theme.primary};
+  font-weight: 700;
 `;
 
 const CardDesc = styled.p`
@@ -320,6 +457,8 @@ const Process = styled.div`
   gap: 2rem;
   text-align: center;
   padding: 2rem 1rem;
+  max-width: 1300px;
+  margin: 0 auto 5rem auto;
 
   @media (max-width: 600px) {
     grid-template-columns: 1fr; /* stack cards on small screens */
@@ -330,7 +469,7 @@ const ProcessCard = styled(motion.div)`
   background: ${({ theme }) => theme.cardBackground};
   padding: 2rem 1rem;
   border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
   transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -352,20 +491,19 @@ const ProcessCard = styled(motion.div)`
     color: ${({ theme }) => theme.text};
   }
 
-   @media (max-width: 600px) {
+  @media (max-width: 600px) {
     h4 {
-    margin-top: 1rem;
-    font-size: 2em;
-    color: ${({ theme }) => theme.primary};
-  }
+      margin-top: 1rem;
+      font-size: 1.6rem;
+      color: ${({ theme }) => theme.primary};
+    }
     p {
-    font-size: 1em;
-    margin-top: 0.5rem;
-    color: ${({ theme }) => theme.text};
-  }
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      color: ${({ theme }) => theme.text};
+    }
   }
 `;
-
 
 /* ================= TESTIMONIALS ================= */
 const TestimonialLottie = styled.div`
@@ -379,19 +517,19 @@ const TestimonialLottie = styled.div`
   }
 `;
 
-
-
 const TestimonialSection = styled(Section)`
   background: ${({ theme }) => theme.cardBackground};
   padding: 3rem 2rem;
   border-radius: 20px;
+  max-width: 1300px;
+  margin: 0 auto 5rem auto;
 `;
 
 const TestimonialCard = styled(motion.div)`
   background: ${({ theme }) => theme.background};
   padding: 1.5rem;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
 `;
 
@@ -414,11 +552,14 @@ const CTALottie = styled.div`
 `;
 
 const CTA = styled(motion.section)`
-  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  background: linear-gradient(135deg, #0b1c2d, #081421);
   color: white;
-  padding: 3.5rem 2rem;
-  border-radius: 25px;
+  padding: 4rem 2rem;
+  border-radius: 30px;
   text-align: center;
+  border: 2px solid #f5b301;
+  max-width: 800px;
+  margin: 0 auto 6rem auto;
 `;
 
 /* ================= FOOTER ================= */
@@ -438,6 +579,11 @@ const TopSection = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 2rem;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    gap: 3rem;
+  }
 `;
 
 const CompanyInfo = styled.div`
@@ -449,7 +595,8 @@ const CompanyInfo = styled.div`
   }
 
   p {
-    font-size: 0.95rem;
+   color: ${({ theme }) => theme.primary};
+    font-size: 1rem;
     line-height: 1.5;
   }
 `;
@@ -513,17 +660,20 @@ const BottomSection = styled.div`
 const properties = [
   {
     title: "Commercial Office Space – 1500 Sq. Ft.",
- image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72",
+    image:
+      sq1500,
     text: "Government-approved commercial space on the 1st floor at Navbodh Tower, ideal for offices, clinics, and consultancies. Prime location in Shankar Nagar, Raipur.",
   },
   {
     title: "Commercial Office Space – 3100 Sq. Ft.",
-   image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
+    image:
+      sq3000,
     text: "Spacious commercial area on the 2nd floor, suitable for corporate offices, banks, or large business setups with modern amenities and lift access.",
   },
   {
     title: "Multipurpose Commercial Space",
-     image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72",
+    image:
+      map,
     text: "Flexible commercial space designed for showrooms, professional offices, or service-based businesses in a high-visibility commercial hub.",
   },
 ];
@@ -551,19 +701,21 @@ const processSteps = [
   },
 ];
 
-
 const testimonials = [
   {
     name: "Rahul Sharma",
-    feedback: "Navbodh Tower provided us a perfect office space. Professional and responsive team!",
+    feedback:
+      "Navbodh Tower provided us a perfect office space. Professional and responsive team!",
   },
   {
     name: "Anjali Verma",
-    feedback: "Great experience renting a retail showroom. Prime location and easy documentation.",
+    feedback:
+      "Great experience renting a retail showroom. Prime location and easy documentation.",
   },
   {
     name: "Suresh Gupta",
-    feedback: "Highly recommend Navbodh Tower for corporate offices. Excellent property management.",
+    feedback:
+      "Highly recommend Navbodh Tower for corporate offices. Excellent property management.",
   },
 ];
 
@@ -573,38 +725,65 @@ const Footer = () => (
     <TopSection>
       <CompanyInfo>
         <h2>Navbodh Tower</h2>
-        <p>Premium commercial spaces in Raipur. Offices, retail, and corporate buildings for growing businesses.</p>
+        <p>
+          Premium commercial spaces in Raipur. Offices, retail, and corporate
+          buildings for growing businesses.
+        </p>
       </CompanyInfo>
 
       <Links>
         <h3>Quick Links</h3>
-        <a href="/">Home</a>
-        <a href="/about">About Us</a>
-        <a href="/projects">Projects</a>
-        <a href="/gallery">Gallery</a>
-        <a href="/contact">Contact</a>
+        <a href="#properties">Properties</a>
+        <a href="#process">Process</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
       </Links>
 
       <ContactInfo>
-        <h3>Contact</h3>
-        <p>Phone: +91-12345-67890</p>
-        <p>Email: info@navbodhtower.com</p>
-        <p>Address: 123 Business Street, Raipur, Chhattisgarh</p>
-
+        <h3>Contact Us</h3>
+        <p>
+          <FaPhoneAlt /> +91 98765 43210
+        </p>
         <SocialMedia>
-          <a href="#"><FaFacebookF /></a>
-          <a href="#"><FaInstagram /></a>
-          <a href="#"><FaLinkedinIn /></a>
-          <a href="#"><FaTwitter /></a>
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+          >
+            <FaFacebookF />
+          </a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <FaInstagram />
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedinIn />
+          </a>
+          <a
+            href="https://twitter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Twitter"
+          >
+            <FaTwitter />
+          </a>
         </SocialMedia>
       </ContactInfo>
     </TopSection>
 
     <BottomSection>
-      <p>© 2025 Navbodh Tower | All Rights Reserved</p>
-      <div>
-        <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms & Conditions</a>
-      </div>
+      <p>© {new Date().getFullYear()} Navbodh Tower. All rights reserved.</p>
+      <p>Designed with ❤️ by YourCompany</p>
     </BottomSection>
   </FooterContainer>
 );
@@ -615,220 +794,196 @@ const Home = () => {
     <Container>
       {/* HERO */}
       <HeroVideoWrapper>
-        <HeroVideo src={bgVideo} autoPlay muted loop playsInline />
-        <VideoOverlay />
+       <HeroCarousel />
+
+        {/* <VideoOverlay /> */}
         <HeroContent>
           <HeroInner>
-            <div>
-              <HeroTitle variants={fadeUp} initial="hidden" animate="visible">
-                Navbodh Tower
-              </HeroTitle>
-              <HeroSubtitle
-                variants={fadeUp}
-                initial="hidden"
-                animate="visible"
-                transition={{ delay: 0.2 }}
-              >
-                Premium commercial real estate offering modern office spaces,
-                retail showrooms, and enterprise solutions in the prime location
-                of Raipur, Chhattisgarh.
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              transition={{ duration: 1 }}
+            >
+              <HeroTitle>Welcome to Navbodh Tower</HeroTitle>
+              <HeroSubtitle>
+                Premium Commercial Spaces in Shankar Nagar, Raipur
               </HeroSubtitle>
               <HeroButtons>
-                <Button primary whileHover={{ scale: 1.05 }}>
-                  View Properties
-                </Button>
-                <Button whileHover={{ scale: 1.05 }}>
+                <Button
+                  primary
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   Contact Us
                 </Button>
+                <Button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  Explore Properties
+                </Button>
               </HeroButtons>
-            </div>
+            </motion.div>
           </HeroInner>
         </HeroContent>
       </HeroVideoWrapper>
 
       {/* SEARCH */}
       <SearchBox
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.8 }}
       >
-        <Select>
-          <option>Location</option>
-          <option>Raipur</option>
+        <Select aria-label="Select Property Type">
+          <option>Commercial Office</option>
+          <option>Retail Showroom</option>
+          <option>Corporate Space</option>
         </Select>
-        <Select>
-          <option>Property Type</option>
-          <option>Office</option>
-          <option>Retail</option>
-          <option>Warehouse</option>
+        <Select aria-label="Select Floor">
+          <option>Ground Floor</option>
+          <option>First Floor</option>
+          <option>Second Floor</option>
         </Select>
-        <Select>
-          <option>Budget</option>
-          <option>₹20k – ₹50k</option>
-          <option>₹50k+</option>
+        <Select aria-label="Select Size">
+          <option>1000-2000 Sq. Ft.</option>
+          <option>2000-4000 Sq. Ft.</option>
+          <option>4000+ Sq. Ft.</option>
         </Select>
-        <Button primary whileHover={{ scale: 1.05 }}>Search</Button>
+        <Button primary>Search</Button>
       </SearchBox>
 
       {/* ABOUT NAVBODH TOWER */}
-      <AboutSection
-  variants={fadeUp}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true }}
->
-  <AboutContent>
-    <h2>About Navbodh Tower</h2>
-
-    <p>
-      Navbodh Tower is a premier commercial real estate destination in Raipur,
-      offering modern office spaces, retail showrooms, and corporate solutions.
-      We provide state-of-the-art facilities, strategic locations, and
-      exceptional property management for businesses to grow and thrive.
-    </p>
-
-    <p>
-      Our team ensures seamless property experiences, from shortlisting and
-      site visits to documentation and final handover, making your investment
-      smooth and hassle-free.
-    </p>
-
-    {/* MISSION & VISION */}
-    <MissionVision>
-      <MVCard
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <h3>Our Mission</h3>
-        <p>
-          To deliver high-quality commercial spaces with modern infrastructure,
-          transparent processes, and professional management that empower
-          businesses to succeed.
-        </p>
-      </MVCard>
-
-      <MVCard
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <h3>Our Vision</h3>
-        <p>
-          To become Raipur’s most trusted commercial real estate destination by
-          creating sustainable, future-ready business environments.
-        </p>
-      </MVCard>
-    </MissionVision>
-  </AboutContent>
-
-  <AboutImages>
-    {aboutImages.map((img, i) => (
-      <img key={i} src={img} alt={`About Navbodh Tower ${i + 1}`} />
-    ))}
-  </AboutImages>
+<AboutSection>
+  {aboutContent.map(({ title, text, image }, i) => (
+    <AboutRow
+      key={i}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 1 }}
+    >
+      {i % 2 === 0 ? (
+        <>
+          <AboutText variants={slideInLeft}>
+            <h2>{title}</h2>
+            <p>{text}</p>
+          </AboutText>
+          <AboutImage variants={slideInRight}>
+            <img src={image} alt={title} />
+          </AboutImage>
+        </>
+      ) : (
+        <>
+          <AboutImage variants={slideInLeft}>
+            <img src={image} alt={title} />
+          </AboutImage>
+          <AboutText variants={slideInRight}>
+            <h2>{title}</h2>
+            <p>{text}</p>
+          </AboutText>
+        </>
+      )}
+    </AboutRow>
+  ))}
 </AboutSection>
 
+      {/* PROPERTIES */}
+      <Section id="properties">
+        <SectionTitle>Available Properties</SectionTitle>
 
-      {/* FEATURED PROPERTIES */}
-      <Section>
-        <SectionTitle>Featured Properties</SectionTitle>
         <CardsContainer>
-          {properties.map((item, i) => (
-            <Card key={i} variants={fadeUp} initial="hidden" whileInView="visible" whileHover={{ y: -10 }}>
-              <CardImage src={item.image} />
-              <CardTitle>{item.title}</CardTitle>
-              <CardDesc>{item.text}</CardDesc>
+          {properties.map(({ title, image, text }, i) => (
+            <Card
+              key={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              whileHover={{ scale: 1.03 }}
+            >
+              <CardImage src={image} alt={title} />
+              <CardTitle>{title}</CardTitle>
+              <CardDesc>{text}</CardDesc>
             </Card>
           ))}
         </CardsContainer>
       </Section>
 
       {/* PROCESS */}
-      <Section>
-  <SectionTitle>Our Process</SectionTitle>
+      <Section id="process">
+        <SectionTitle>Our Process</SectionTitle>
 
-  <Process>
-    {processSteps.map((step, i) => (
-      <ProcessCard
-        key={i}
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
- <Lottie
-  animationData={step.animation}
-  loop
-  autoplay
-  style={{ width: "100%", maxWidth: 180, height: "auto", margin: "0 auto" }}
-/>
-
-
-
-        <h4>{step.title}</h4>
-        <p>{step.description}</p>
-      </ProcessCard>
-    ))}
-  </Process>
-</Section>
-
+        <Process>
+          {processSteps.map(({ title, description, animation }, i) => (
+            <ProcessCard
+              key={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              whileHover={{ scale: 1.05 }}
+            >
+              <Lottie
+                animationData={animation}
+                loop
+                style={{ width: 120, height: 120 }}
+              />
+              <h4>{title}</h4>
+              <p>{description}</p>
+            </ProcessCard>
+          ))}
+        </Process>
+      </Section>
 
       {/* TESTIMONIALS */}
-      <TestimonialSection>
-  <SectionTitle>What Our Clients Say</SectionTitle>
+      <TestimonialSection id="testimonials">
+        <SectionTitle>What Our Clients Say</SectionTitle>
 
-  <CardsContainer>
-    {testimonials.map((t, i) => (
-      <TestimonialCard
-        key={i}
-        variants={fadeUp}
+        <CardsContainer>
+          {testimonials.map(({ name, feedback }, i) => (
+            <TestimonialCard
+              key={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+            >
+              <TestimonialLottie>
+                <Lottie
+                  animationData={testimonialAnimation}
+                  loop
+                  style={{ width: "100%", height: "100%" }}
+                />
+              </TestimonialLottie>
+              <p>{feedback}</p>
+              <ClientName>- {name}</ClientName>
+            </TestimonialCard>
+          ))}
+        </CardsContainer>
+      </TestimonialSection>
+
+      {/* CTA */}
+      <CTA
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
+        variants={fadeUp}
       >
-        <TestimonialLottie>
-          <Lottie
-            animationData={testimonialAnimation}
-            loop
-            autoplay
-          />
-        </TestimonialLottie>
-
-        <p>"{t.feedback}"</p>
-        <ClientName>- {t.name}</ClientName>
-      </TestimonialCard>
-    ))}
-  </CardsContainer>
-</TestimonialSection>
-
-
-     <CTA
-  variants={fadeUp}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true }}
->
-  <CTALottie>
-    <Lottie animationData={ctaAnimation} loop autoplay />
-  </CTALottie>
-
-  <h2>Looking for the perfect commercial space?</h2>
-
-  <a href="tel:+911234567890" style={{ textDecoration: "none" }}>
-    <Button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-      <FaPhoneAlt />
-      Schedule a Call
-    </Button>
-  </a>
-</CTA>
-
-
-      {/* Spacer */}
-      <Spacer />
+        <CTALottie>
+          <Lottie animationData={ctaAnimation} loop />
+        </CTALottie>
+        <h2>Ready to Elevate Your Business?</h2>
+        <p>
+          Contact Navbodh Tower today for premium commercial spaces tailored to
+          your needs.
+        </p>
+        <Button
+          primary
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          style={{ marginTop: "1.5rem" }}
+        >
+          Get in Touch
+        </Button>
+      </CTA>
 
       {/* FOOTER */}
       <Footer />

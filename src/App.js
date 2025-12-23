@@ -2,30 +2,29 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import Navbar from "./components/Navbar";
-import ScrollToTop from "./components/ScrollToTop"; 
+import ScrollToTop from "./components/ScrollToTop";
 
-// Import your pages
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 
-// Define light and dark themes
+// Navbodh Tower Themes
 const lightTheme = {
   background: "#ffffff",
-  text: "#333333",
-  primary: "#4b5cff",
-  primaryHover: "#3a4bcc",
-  cardBackground: "#f8f8f8",
+  text: "#1f2933",
+  primary: "#f5b301",
+  primaryHover: "#d99a00",
+  cardBackground: "#f5f7fa",
 };
 
 const darkTheme = {
-  background: "#1e1e1e",
-  text: "#f0f0f0",
-  primary: "#4b5cff",
-  primaryHover: "#3a4bcc",
-  cardBackground: "#2a2a2a",
+  background: "#0b1c2d",
+  text: "#e5e7eb",
+  primary: "#f5b301",
+  primaryHover: "#d99a00",
+  cardBackground: "#081421",
 };
 
 // Global styles
@@ -35,8 +34,9 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.text};
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
+
   a {
     color: inherit;
     text-decoration: none;
@@ -44,7 +44,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  const [theme, setTheme] = useState("light"); // default theme
+  const [theme, setTheme] = useState("dark");
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
@@ -54,7 +54,7 @@ function App() {
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyle />
       <Router>
-             <ScrollToTop /> 
+        <ScrollToTop />
         <Navbar theme={theme} toggleTheme={toggleTheme} />
         <Routes>
           <Route path="/" element={<Home />} />

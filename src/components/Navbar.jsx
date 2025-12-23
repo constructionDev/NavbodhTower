@@ -122,7 +122,7 @@ const Navbar = ({ theme, toggleTheme }) => {
       <NavLinks open={menuOpen}>
         <NavItem><NavLink to="/" onClick={closeMenu}>Home</NavLink></NavItem>
         <NavItem><NavLink to="/about" onClick={closeMenu}>About</NavLink></NavItem>
-        <NavItem><NavLink to="/projects" onClick={closeMenu}>Projects</NavLink></NavItem>
+        <NavItem><NavLink to="/projects" onClick={closeMenu}>Projects & Clients</NavLink></NavItem>
         <NavItem><NavLink to="/gallery" onClick={closeMenu}>Gallery</NavLink></NavItem>
         <NavItem><NavLink to="/contact" onClick={closeMenu}>Contact</NavLink></NavItem>
       </NavLinks>

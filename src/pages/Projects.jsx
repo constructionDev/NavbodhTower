@@ -2,7 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer";
-
+import premiumspace from "../assets/premiumspace.jpg";
+import RetailShowroom from "../assets/RetailShowroom.jpg";
+import Warehouse from "../assets/Warehouse.jpg";
+import tower from "../assets/tower.jpeg";
+import coworking from "../assets/coworking.jfif";
+import techhub from "../assets/coworking1.jpg";
+import hdfc from "../assets/hdfclogo.png";
+import beauty from "../assets/barlogo.png";     
+import dr from "../assets/drlogo.png";
+import Bone from "../assets/bonelogo.png";
+import mahal from "../assets/Sheeshmahallogo.jpg";
+import Anand from "../assets/anadlogo.jpg";
 // ================= CONTAINER =================
 const Container = styled.div`
   padding: 2rem 5%;
@@ -14,6 +25,18 @@ const Title = styled.h1`
   color: ${({ theme }) => theme.primary};
   text-align: center;
   margin-bottom: 2rem;
+`;
+
+// ================= ANIMATED CHARACTER =================
+const AnimatedCharacter = styled(motion.div)`
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  border-radius: 50%;
+  margin: 2rem auto;
+`;
+const Spacer = styled.div`
+  height: 4rem;
 `;
 
 // ================= PROJECTS GRID =================
@@ -80,18 +103,50 @@ const VisitButton = styled.a`
   }
 `;
 
-// ================= ANIMATED CHARACTER =================
-const AnimatedCharacter = styled(motion.div)`
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #4f46e5, #6366f1);
-  border-radius: 50%;
-  margin: 2rem auto;
+// ================= CLIENTS SECTION =================
+const ClientsSection = styled.section`
+  margin-top: 4rem;
 `;
 
-// ================= SPACER =================
-const Spacer = styled.div`
-  height: 4rem;
+const ClientCard = styled.a`
+  background: ${({ theme }) => theme.cardBackground};
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;  // Ensure text is not underlined
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
+  }
+`;
+
+const ClientLogo = styled.img`
+  width: 120px;
+  height: auto;
+  margin-bottom: 1rem;
+  object-fit: contain;
+`;
+
+const ClientName = styled.h3`
+  color: ${({ theme }) => theme.primary};
+  margin-bottom: 1rem;
+`;
+
+const ClientDesc = styled.p`
+  color: ${({ theme }) => theme.text};
+  font-size: 0.95rem;
+  text-align: center;
+`;
+
+const ClientsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
 `;
 
 // ================= FRAMER MOTION VARIANTS =================
@@ -113,46 +168,85 @@ const characterAnimation = {
 const Projects = () => {
   const projects = [
     {
-      title: "Premium Office Space",
-      desc: "Modern office with high-end amenities.",
-      img: "https://picsum.photos/400/200?random=1",
+      title: "Shivayan Health Care Pvt",
+      // desc: "Modern office with high-end amenities.",
+      img: premiumspace,
       link: "https://example.com/office",
     },
     {
-      title: "Retail Showroom",
-      desc: "High visibility retail location in city center.",
-      img: "https://picsum.photos/400/200?random=2",
+      title: "Lalchand Heights",
+      // desc: "High visibility retail location in city center.",
+      img: RetailShowroom,
       link: "https://example.com/retail",
     },
     {
-      title: "Corporate Tower",
-      desc: "Luxury corporate building with multiple floors.",
-      img: "https://picsum.photos/400/200?random=3",
+      title: "Navbodh Tower",
+      // desc: "Luxury corporate building with multiple floors.",
+      img: tower,
       link: "https://example.com/corporate",
     },
+    // {
+    //   title: "Co-working Space",
+    //   desc: "Flexible co-working space for startups.",
+    //   img: coworking,
+    //   link: "https://example.com/coworking",
+    // },
+    // {
+    //   title: "Industrial Warehouse",
+    //   desc: "Spacious warehouse with logistics support.",
+    //   img: Warehouse,
+    //   link: "https://example.com/warehouse",
+    // },
+    // {
+    //   title: "Tech Hub",
+    //   desc: "Innovation hub for tech companies.",
+    //   img: techhub,
+    //   link: "https://example.com/techhub",
+    // },
+  ];
+
+  const clients = [
     {
-      title: "Co-working Space",
-      desc: "Flexible co-working space for startups.",
-      img: "https://picsum.photos/400/200?random=4",
-      link: "https://example.com/coworking",
+      name: "HDFC Bank",
+      desc: "India's leading private sector bank, offering innovative financial solutions, trusted services, and a strong digital presence to individuals and businesses nationwide.",
+      logo: hdfc, // Add the path to HDFC's logo image
+      link: "https://hdfcbank.com", // Link to HDFC Bank's website
     },
     {
-      title: "Industrial Warehouse",
-      desc: "Spacious warehouse with logistics support.",
-      img: "https://picsum.photos/400/200?random=5",
-      link: "https://example.com/warehouse",
+      name: "The Beauty Bar",
+      desc: "A premier cosmetology clinic led by Dr. Rashi Uike and Dr. Swati Sikarwar, offering safe, personalized skin, hair, and aesthetic treatments.",
+      logo:  beauty,
+      link: "https://www.instagram.com/thebeautybar_raipur/reels/", // Link to their website
     },
     {
-      title: "Tech Hub",
-      desc: "Innovation hub for tech companies.",
-      img: "https://picsum.photos/400/200?random=6",
-      link: "https://example.com/techhub",
+      name: "The Bone Clinic",
+      desc: "An experienced Orthopedic Surgeon in Raipur, specializing in treating bone, joint, and spine conditions with advanced techniques.",
+      logo:  Bone , 
+     
+    },
+    {
+      name: "Dr. Dhiraj Premchandani",
+      desc: "Consultant Gastro and Laparoscopic Surgeon at Ramkrishna Care Hospital, Raipur, with expertise in advanced GI and HPB surgery.",
+      logo: dr , 
+      link: "https://drdhirajpremchandani.com", // Link to his website
+    },
+    {
+      name: "Sheesh Mahal",
+      desc: "A pure-vegetarian fine-dining restaurant and party venue in Navboadh Tower, Shankar Nagar, Raipur, offering multi-cuisine dishes and event hosting.",
+      logo: mahal , 
+      link: "https://www.instagram.com/sheeshmahalraipur/#", // Link to their website
+    },
+    {
+      name: "Anand Health & Beauty Care",
+      desc: "Clinics in Raipur and Bilaspur offering cosmetic and medical services like hair transplants, skin care, and obstetric treatments.",
+      logo: Anand,
+      link: "https://www.instagram.com/anand_health_and_beauty_/", // Link to their website
     },
   ];
 
   return (
     <Container>
-      <Title>Our Projects</Title>
+      <Title>Our Projects(sister concern)</Title>
 
       {/* Animated Character */}
       <AnimatedCharacter
@@ -184,6 +278,21 @@ const Projects = () => {
           </ProjectCard>
         ))}
       </ProjectsGrid>
+
+      {/* Clients Section */}
+      <ClientsSection>
+        <Title>Our Clients</Title>
+
+        <ClientsGrid>
+          {clients.map((client, index) => (
+            <ClientCard key={index} href={client.link} target="_blank" rel="noopener noreferrer">
+              <ClientLogo src={client.logo} alt={client.name} />
+              <ClientName>{client.name}</ClientName>
+              <ClientDesc>{client.desc}</ClientDesc>
+            </ClientCard>
+          ))}
+        </ClientsGrid>
+      </ClientsSection>
 
       {/* Spacer for gap */}
       <Spacer />
