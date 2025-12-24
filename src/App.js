@@ -20,11 +20,11 @@ const lightTheme = {
 };
 
 const darkTheme = {
-  background: "#0b1c2d",
+  background: "#061341",
   text: "#e5e7eb",
   primary: "#f5b301",
   primaryHover: "#d99a00",
-  cardBackground: "#081421",
+  cardBackground: "#061341",
 };
 
 // Global styles

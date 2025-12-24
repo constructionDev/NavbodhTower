@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import img1 from '../assets/slider1.png';
-import img2 from '../assets/slider2.png';
-import img3 from '../assets/slider3.png';
+import img1 from '../assets/S11.png';
+import img2 from '../assets/S22.png';
+import img3 from '../assets/S33.png';
+import img4 from '../assets/S44.png';
+import img5 from '../assets/s5.png';
+
+
 
 
 
@@ -12,6 +16,8 @@ const images = [
 img1,
 img2,
 img3,
+
+img4
 
 ];
 
@@ -47,7 +53,7 @@ const Controls = styled.div`
 
 const Button = styled(motion.button)`
   pointer-events: all;
-  background: rgba(245, 179, 1, 0.8);
+  background: #ffffff82;
   border: none;
   border-radius: 50%;
   width: 45px;

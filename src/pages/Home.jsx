@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import map from "../assets/map2.png";
+import AboutRowAnimated from "../components/AboutRowAnimated";
+import Footer from "../components/Footer";
 
 import {
   FaFacebookF,
@@ -17,15 +19,15 @@ import img2 from "../assets/2.jpeg";
 import img3 from "../assets/3.jpeg";
 import img4 from "../assets/4.jpeg";
 import Lottie from "lottie-react";
-import HeroCarousel from "../components/HeroCarousel"
+import HeroCarousel from "../components/HeroCarousel";
 import requirementAnimation from "../assets/lottie/requirement.json";
 import shortlistAnimation from "../assets/lottie/shortlist.json";
 import siteVisitAnimation from "../assets/lottie/site-visit3.json";
 import documentationAnimation from "../assets/lottie/documentation.json";
 import testimonialAnimation from "../assets/lottie/profile.json";
 import ctaAnimation from "../assets/lottie/Customer Support.json";
-import  sq1500 from '../assets/1500.jpg';
-import sq3000  from '../assets/3000SQ.jpg';
+import sq1500 from "../assets/1500.jpg";
+import sq3000 from "../assets/3000SQ.jpg";
 import premiumspace from "../assets/premiumspace.jpg";
 import RetailShowroom from "../assets/RetailShowroom.jpg";
 import Warehouse from "../assets/Warehouse.jpg";
@@ -46,7 +48,6 @@ const slideInRight = {
   visible: { opacity: 1, x: 0 },
 };
 
-
 /* ================= CONTAINER ================= */
 const Container = styled.div``;
 
@@ -60,7 +61,7 @@ const Section = styled.section`
 `;
 
 /* ================= SECTION TITLE ================= */
-const SectionTitle = styled.h2`
+const SectionTitle = styled(motion.h2)`
   text-align: center;
   color: ${({ theme }) => theme.primary};
   margin-bottom: 2.5rem;
@@ -101,29 +102,20 @@ const HeroVideo = styled.div`
   filter: brightness(0.65);
 `;
 
-// const VideoOverlay = styled.div`
-//   position: absolute;
-//   inset: 0;
-//   background: linear-gradient(
-//     to right,
-//     rgba(11, 28, 45, 0.9),
-//     rgba(11, 28, 45, 0.55)
-//   );
-// `;
 const HeroContent = styled.div`
-   position: absolute; /* ensure it overlays the video/carousel */
-  inset: 0; /* top, right, bottom, left = 0 */
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* vertical center */
-  align-items: center; /* horizontal center */
-  text-align: center; /* center text */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   padding: 0 1.5rem;
   z-index: 2;
 `;
 
 const HeroInner = styled.div`
-    max-width: 800px; /* optional, limits text width */
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -138,7 +130,7 @@ const HeroTitle = styled(motion.h1)`
 `;
 
 const HeroSubtitle = styled(motion.p)`
-    font-size: 1.1rem;
+  font-size: 1.1rem;
   color: #e0d09c;
   margin: 1rem 0;
   text-align: center;
@@ -148,38 +140,27 @@ const HeroSubtitle = styled(motion.p)`
   }
 `;
 
-
 const HeroButtons = styled.div`
-    display: flex;
+  display: flex;
   gap: 1rem;
-  justify-content: center; /* center buttons horizontally */
-  flex-wrap: wrap; /* wrap on small screens */
+  justify-content: center;
+  flex-wrap: wrap;
 `;
 
 const Button = styled(motion.button)`
-padding: 0.9rem 1.8rem;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    justify-content: center;
-    font-size: 1.2rem
-19.2px
-;
-    background: linear-gradient(135deg, #f5b301, #d99a00);
-    color: #fff;
-    box-shadow: 0 12px 30px rgba(245, 179, 1, 0.35);
-
+  padding: 0.9rem 1.8rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  justify-content: center;
+  font-size: 1.2rem;
   background: ${({ primary }) =>
-    primary
-      ? "linear-gradient(135deg, #f5b301, #d99a00)"
-      : "#e5e7eb"};
-
-  color: ${({ primary }) => (primary ? "#0b1c2d" : "#111")};
-
+    primary ? "linear-gradient(135deg, #f5b301, #d99a00)" : "#e5e7eb"};
+  color: ${({ primary }) => (primary ? "#0e1a42" : "#111")};
   box-shadow: ${({ primary }) =>
     primary ? "0 12px 30px rgba(245,179,1,0.35)" : "none"};
 `;
@@ -191,7 +172,7 @@ const SearchBox = styled(motion.section)`
   border-radius: 20px;
   margin: 4rem auto;
   max-width: 1200px;
-
+  border: 2px solid yellow;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1rem;
@@ -210,7 +191,6 @@ const Select = styled.select`
 `;
 
 /* ================= ABOUT NAVBODH TOWER ================= */
-
 const AboutImage = styled(motion.div)`
   img {
     width: 100%;
@@ -222,68 +202,6 @@ const AboutImage = styled(motion.div)`
 
   @media (max-width: 900px) {
     margin-top: 1rem;
-  }
-`;
-
-const Highlights = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.2rem;
-  margin-top: 2.5rem;
-`;
-
-const HighlightCard = styled(motion.div)`
-  background: ${({ theme }) => theme.background};
-  padding: 1.2rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  text-align: center;
-
-  h4 {
-    color: ${({ theme }) => theme.primary};
-    font-size: 1.4rem;
-    margin-bottom: 0.3rem;
-  }
-
-  p {
-    font-size: 0.9rem;
-  }
-`;
-
-const MissionVision = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-`;
-
-const MVCard = styled(motion.div)`
-  background: ${({ theme }) => theme.cardBackground};
-  padding: 1.5rem;
-  border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-  text-align: left;
-
-  h3 {
-    color: ${({ theme }) => theme.primary};
-    margin-bottom: 0.5rem;
-  }
-
-  p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-`;
-const AboutSection = styled(motion.section)`
-   max-width: 1300px;
-  margin: 5rem auto;
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-    text-align: center;
   }
 `;
 
@@ -305,6 +223,19 @@ const AboutText = styled(motion.div)`
   }
 `;
 
+const AboutSection = styled(motion.section)`
+  max-width: 1300px;
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+`;
+
 const AboutRow = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -316,96 +247,6 @@ const AboutRow = styled(motion.div)`
     text-align: center;
   }
 `;
-
-const AboutContent = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1rem;
-
-  h2 {
-    color: ${({ theme }) => theme.primary};
-    margin-bottom: 0.5rem;
-    font-size: clamp(1.8rem, 2.5vw, 2.5rem);
-  }
-
-  p {
-    color: ${({ theme }) => theme.text};
-    line-height: 1.6;
-    font-size: 1rem;
-  }
-
-  @media (max-width: 900px) {
-    text-align: center;
-    padding: 0;
-  }
-`;
-
-const aboutContent = [
-  {
-    title: "About Navbodh Tower",
-    text: "Premium commercial spaces in Shankar Nagar, Raipur. Strategically located for business growth.",
-    image: img1,
-  },
-  {
-    title: "Prime Location",
-    text: "Located at the bustling Shankar Nagar commercial hub.",
-    image: img2,
-  },
-  {
-    title: "Modern Facilities",
-    text: "Elevators, 24/7 security, and ample parking spaces.",
-    image: img3,
-  },
-  {
-    title: "Flexible Spaces",
-    text: "Offices, retail, and corporate layouts tailored to your needs.",
-    image: img4,
-  },
-];
-
-<AboutSection>
-
-  {aboutContent.map(({ title, text, image }, i) => (
-  
-    <AboutRow
-      key={i}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 1 }}
-    >
-      {i % 2 === 0 ? (
-        <>
-          <AboutText variants={slideInLeft}>
-            <h2>{title}</h2>
-            <p>{text}</p>
-          </AboutText>
-          <AboutImage variants={slideInRight}>
-            <img src={image} alt={title} />
-          </AboutImage>
-        </>
-      ) : (
-        <>
-          <AboutImage variants={slideInLeft}>
-            <img src={image} alt={title} />
-          </AboutImage>
-          <AboutText variants={slideInRight}>
-            <h2>{title}</h2>
-            <p>{text}</p>
-          </AboutText>
-        </>
-      )}
-    </AboutRow>
-  ))}
-</AboutSection>
-
-
-
-
-
-const aboutImages = [img1, img2, img3, img4];
 
 /* ================= CARDS ================= */
 const CardsContainer = styled.div`
@@ -423,6 +264,7 @@ const Card = styled(motion.div)`
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
   overflow: hidden;
   cursor: pointer;
+  border: 2px solid yellow;
 
   @media (max-width: 600px) {
     padding: 1.5rem;
@@ -461,7 +303,7 @@ const Process = styled.div`
   margin: 0 auto 5rem auto;
 
   @media (max-width: 600px) {
-    grid-template-columns: 1fr; /* stack cards on small screens */
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -474,6 +316,7 @@ const ProcessCard = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 2px solid yellow;
 
   &:hover {
     transform: translateY(-6px);
@@ -490,33 +333,9 @@ const ProcessCard = styled(motion.div)`
     margin-top: 0.5rem;
     color: ${({ theme }) => theme.text};
   }
-
-  @media (max-width: 600px) {
-    h4 {
-      margin-top: 1rem;
-      font-size: 1.6rem;
-      color: ${({ theme }) => theme.primary};
-    }
-    p {
-      font-size: 1rem;
-      margin-top: 0.5rem;
-      color: ${({ theme }) => theme.text};
-    }
-  }
 `;
 
 /* ================= TESTIMONIALS ================= */
-const TestimonialLottie = styled.div`
-  width: 110px;
-  height: 110px;
-  margin: 0 auto 1rem;
-
-  @media (max-width: 768px) {
-    width: 90px;
-    height: 90px;
-  }
-`;
-
 const TestimonialSection = styled(Section)`
   background: ${({ theme }) => theme.cardBackground};
   padding: 3rem 2rem;
@@ -531,28 +350,18 @@ const TestimonialCard = styled(motion.div)`
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
+  border: 2px solid yellow;
 `;
 
-const ClientName = styled.h4`
-  margin-top: 1rem;
-  color: ${({ theme }) => theme.primary};
+const TestimonialLottie = styled.div`
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 1rem;
 `;
 
 /* ================= CTA ================= */
-
-const CTALottie = styled.div`
-  width: 220px;
-  height: 220px;
-  margin: 0 auto 1.5rem;
-
-  @media (max-width: 768px) {
-    width: 160px;
-    height: 160px;
-  }
-`;
-
 const CTA = styled(motion.section)`
-  background: linear-gradient(135deg, #0b1c2d, #081421);
+  background: linear-gradient(135deg, #0e1a42, #081421);
   color: white;
   padding: 4rem 2rem;
   border-radius: 30px;
@@ -562,28 +371,18 @@ const CTA = styled(motion.section)`
   margin: 0 auto 6rem auto;
 `;
 
-/* ================= FOOTER ================= */
-const FooterContainer = styled.footer`
-  background: ${({ theme }) => theme.cardBackground};
-  padding: 4rem 2rem 2rem 2rem;
-  color: ${({ theme }) => theme.text};
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-  max-width: 1300px;
-  margin: 0 auto;
+const CTALottie = styled.div`
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 1.5rem;
 `;
+
 
 const TopSection = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 2rem;
-
-  @media (max-width: 900px) {
-    flex-direction: column;
-    gap: 3rem;
-  }
 `;
 
 const CompanyInfo = styled.div`
@@ -595,7 +394,7 @@ const CompanyInfo = styled.div`
   }
 
   p {
-   color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.primary};
     font-size: 1rem;
     line-height: 1.5;
   }
@@ -657,24 +456,45 @@ const BottomSection = styled.div`
 
 /* ================= DATA ================= */
 
+const aboutContent = [
+  {
+    title: "About Navbodh Tower",
+    text: "Navbodh Tower offers premium commercial spaces in the heart of Shankar Nagar, Raipur, thoughtfully designed to support modern businesses and professionals. Combining a strategic location with contemporary infrastructure and business-friendly planning, it provides a prestigious and functional environment for enterprises to thrive. With flexible layouts, modern amenities, and excellent connectivity, Navbodh Tower is the ideal destination for businesses seeking growth, visibility, and long-term success.",
+    image: img1,
+  },
+  {
+    title: "Prime Location",
+    text: "Navbodh Tower is strategically positioned in the heart of Shankar Nagar’s prominent commercial hub, one of Raipur’s most sought-after business districts. The location offers excellent road connectivity, high visibility, and easy accessibility, making it ideal for offices, retail outlets, and corporate establishments. Surrounded by established businesses, residential areas, and key city landmarks, Navbodh Tower ensures strong footfall, enhanced brand exposure, and long-term commercial value for growing and established enterprises alike.",
+    image: img2,
+  },
+  {
+    title: "Modern Facilities",
+    text: "Navbodh Tower is equipped with state-of-the-art facilities designed to ensure convenience, safety, and efficiency for businesses. The building features high-speed elevators for smooth vertical movement, 24/7 security with CCTV surveillance for a safe working environment, and ample parking spaces for tenants and visitors. These modern amenities enhance day-to-day operations while providing comfort and reliability for all occupants.",
+    image: img3,
+  },
+  {
+    title: "Flexible Spaces",
+    text: "Navbodh Tower offers a wide range of office, retail, and corporate spaces with flexible layouts that can be customized to suit diverse business requirements. Designed to adapt to your operational needs, these spaces allow businesses to optimize functionality, branding, and growth, making them ideal for startups, established enterprises, and expanding organizations alike.",
+    image: img4,
+  },
+];
+
+
 const properties = [
   {
     title: "Commercial Office Space – 1500 Sq. Ft.",
-    image:
-      sq1500,
-    text: "Government-approved commercial space on the 1st floor at Navbodh Tower, ideal for offices, clinics, and consultancies. Prime location in Shankar Nagar, Raipur.",
+    image: sq1500,
+    text: "Government-approved commercial space on the 1st floor...",
   },
   {
     title: "Commercial Office Space – 3100 Sq. Ft.",
-    image:
-      sq3000,
-    text: "Spacious commercial area on the 2nd floor, suitable for corporate offices, banks, or large business setups with modern amenities and lift access.",
+    image: sq3000,
+    text: "Spacious commercial area on the 2nd floor...",
   },
   {
     title: "Multipurpose Commercial Space",
-    image:
-      map,
-    text: "Flexible commercial space designed for showrooms, professional offices, or service-based businesses in a high-visibility commercial hub.",
+    image: map,
+    text: "Flexible commercial space designed for showrooms, professional offices...",
   },
 ];
 
@@ -703,92 +523,30 @@ const processSteps = [
 
 const testimonials = [
   {
-    name: "Rahul Sharma",
-    feedback:
-      "Navbodh Tower provided us a perfect office space. Professional and responsive team!",
+    name: "TheBeautyBar",
+    feedback: "Navbodh Tower provided the perfect salon space with elegant interiors and a relaxing ambiance. Our clients love visiting, and our team enjoys working here every day!",
   },
   {
-    name: "Anjali Verma",
-    feedback:
-      "Great experience renting a retail showroom. Prime location and easy documentation.",
+    name: "HDFC",
+    feedback: "Setting up our bank branch at Navbodh Tower was effortless. The professional environment and prime location make it ideal for serving our customers efficiently.",
   },
   {
-    name: "Suresh Gupta",
-    feedback:
-      "Highly recommend Navbodh Tower for corporate offices. Excellent property management.",
+    name: "SheeshMahal",
+    feedback: "Navbodh Tower is perfect for our vegetarian restaurant. The spacious layout, great foot traffic, and supportive management have helped us create a wonderful dining experience for our guests!",
   },
 ];
 
-/* ================= FOOTER COMPONENT ================= */
-const Footer = () => (
-  <FooterContainer>
-    <TopSection>
-      <CompanyInfo>
-        <h2>Navbodh Tower</h2>
-        <p>
-          Premium commercial spaces in Raipur. Offices, retail, and corporate
-          buildings for growing businesses.
-        </p>
-      </CompanyInfo>
 
-      <Links>
-        <h3>Quick Links</h3>
-        <a href="#properties">Properties</a>
-        <a href="#process">Process</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#contact">Contact</a>
-      </Links>
 
-      <ContactInfo>
-        <h3>Contact Us</h3>
-        <p>
-          <FaPhoneAlt /> +91 98765 43210
-        </p>
-        <SocialMedia>
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-          >
-            <FaFacebookF />
-          </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-          >
-            <FaInstagram />
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-          >
-            <FaLinkedinIn />
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Twitter"
-          >
-            <FaTwitter />
-          </a>
-        </SocialMedia>
-      </ContactInfo>
-    </TopSection>
-
-    <BottomSection>
-      <p>© {new Date().getFullYear()} Navbodh Tower. All rights reserved.</p>
-      <p>Designed with ❤️ by YourCompany</p>
-    </BottomSection>
-  </FooterContainer>
-);
 
 /* ================= MAIN COMPONENT ================= */
+
+const ClientName = styled.p`
+  font-weight: 700;
+  color: ${({ theme }) => theme.primary};
+  margin-top: 0.5rem;
+`;
+
 const Home = () => {
   return (
     <Container>
@@ -805,17 +563,17 @@ const Home = () => {
               variants={fadeUp}
               transition={{ duration: 1 }}
             >
-              <HeroTitle>Welcome to Navbodh Tower</HeroTitle>
+              {/* <HeroTitle>Welcome to Navbodh Tower</HeroTitle>
               <HeroSubtitle>
                 Premium Commercial Spaces in Shankar Nagar, Raipur
-              </HeroSubtitle>
-              <HeroButtons>
+              </HeroSubtitle> */}
+              <HeroButtons style={{ marginTop: "34rem", justifyContent: "center" }}>
                 <Button
                   primary
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Contact Us
+           <a href="/contact">Contact Us</a>
                 </Button>
                 <Button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   Explore Properties
@@ -844,10 +602,13 @@ const Home = () => {
         </Select>
         <Select aria-label="Select Size">
           <option>1000-2000 Sq. Ft.</option>
-          <option>2000-4000 Sq. Ft.</option>
-          <option>4000+ Sq. Ft.</option>
+          <option>2000-3200 Sq. Ft.</option>
+          
         </Select>
-        <Button primary>Search</Button>
+        <Button primary
+           whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+        >Search</Button>
       </SearchBox>
 
       {/* ABOUT NAVBODH TOWER */}

@@ -142,7 +142,7 @@ const Footer = () => {
         {/* Contact Info */}
         <ContactInfo>
           <h3>Contact</h3>
-          <p>Phone: 075910 66666</p>
+          <p>Phone: 075910 66666 , 98733 76325</p>
           <p>Email: construction@navbodh.com</p>
           <p>Address: 2, Geetanjali Colony, Shankar Nagar, Raipur, Chhattisgarh 492001</p>
 

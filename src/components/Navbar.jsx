@@ -6,7 +6,7 @@ import logoImg from "../assets/logo.jpeg"; // <-- Import your logo image
 
 const Nav = styled.nav`
   background: ${({ theme }) => theme.background};
-  padding: 0.7rem 2rem;
+  padding: 1.7rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,7 +18,7 @@ const Nav = styled.nav`
 
 const Logo = styled(Link)`
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: ${({ theme }) => theme.primary};
   text-decoration: none;
   display: flex;
@@ -27,8 +27,8 @@ const Logo = styled(Link)`
 `;
 
 const LogoImg = styled.img`
-  width: 40px; /* Adjust size as needed */
-  height: 40px;
+  width: 50px; /* Adjust size as needed */
+  height: 50px;
   object-fit: contain;
   border-radius: 20px;
 `;
@@ -52,9 +52,9 @@ const NavLinks = styled.ul`
 
   @media (max-width: 768px) {
     position: fixed;
-    top: 60px;
+    top: 103px;
     right: ${({ open }) => (open ? "0" : "-100%")};
-    width: 60vw;
+    width: 100vw;
     height: 100vh;
     background: ${({ theme }) => theme.background};
     flex-direction: column;
@@ -72,7 +72,7 @@ const NavLink = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.text};
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.3rem;
   transition: color 0.2s ease;
 
   &:hover {
@@ -87,7 +87,7 @@ const ThemeToggle = styled.button`
   padding: 0.4rem 0.9rem;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,9 +127,7 @@ const Navbar = ({ theme, toggleTheme }) => {
         <NavItem><NavLink to="/contact" onClick={closeMenu}>Contact</NavLink></NavItem>
       </NavLinks>
 
-      <ThemeToggle onClick={toggleTheme} aria-label="Toggle theme">
-        {theme === "light" ? <FaSun /> : <FaMoon />}
-      </ThemeToggle>
+   
     </Nav>
   );
 };

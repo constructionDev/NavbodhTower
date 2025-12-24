@@ -7,8 +7,8 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
-  background: "#0b1c2d",     // NAVY BLUE (BROCHURE)
-  cardBackground: "#081421", // DARKER NAVY
+  background: "#061341",     // NAVY BLUE (BROCHURE)
+  cardBackground: "#0d2375ff", // DARKER NAVY
   text: "#e5e7eb",
   primary: "#f5b301",        // GOLDEN YELLOW
   primaryHover: "#d99a00",

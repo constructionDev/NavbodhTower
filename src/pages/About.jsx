@@ -4,6 +4,13 @@ import { motion } from "framer-motion";
 import brochure from "../assets/brochure.pdf";
 import Footer from "../components/Footer";
 import bgVideo from '../assets/bg.mp4';
+import map from "../assets/map2.png";
+import smallsq from "../assets/1500sq.jfif";
+import largesq from "../assets/3100sq.jfif";
+
+
+
+
 
 // ================= CONTAINER =================
 const Container = styled.div``;
@@ -114,6 +121,7 @@ const ServiceCard = styled(motion.div)`
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
+    border: 2px solid;
 `;
 
 const CardTitle = styled.h3`
@@ -137,6 +145,7 @@ const ProcessCard = styled(motion.div)`
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition: all 0.3s ease;
+ border: 2px solid;
 `;
 
 // ================= ACHIEVEMENTS =================
@@ -221,6 +230,30 @@ const FounderAbout = styled.p`
 `;
 
 // ================= MAP =================
+
+const services = [
+  {
+    title: "Office Spaces",
+    desc: "Well-planned and modern office spaces ideal for startups, professionals, and corporates.",
+    plotSize: "1200 - 3000 sq.ft",
+    mapImage: "/assets/maps/office-map.png" // put the image in your public/assets/maps folder
+  },
+  {
+    title: "Retail & Showroom Spaces",
+    desc: "Prime retail spaces with excellent visibility and high customer footfall.",
+    plotSize: "800 - 2500 sq.ft",
+    mapImage: "/assets/maps/retail-map.png"
+  },
+  {
+    title: "Corporate Setups",
+    desc: "Spacious commercial floors suitable for banks, consultancies, and large enterprises.",
+    plotSize: "1500 - 4000 sq.ft",
+    mapImage: "/assets/maps/corporate-map.png"
+  },
+  // Add for other services
+];
+
+
 const MapWrapper = styled.div`
   margin-top: 2rem;
   iframe {
@@ -330,14 +363,18 @@ const achievements = [
       </HeroVideoWrapper>
 
       {/* COMPANY OVERVIEW */}
-      <Section>
-        <SectionTitle>Company Overview</SectionTitle>
-        <SectionSubtitle>
-       
+    <Section>
+  <SectionTitle>Company Overview</SectionTitle>
+  <SectionSubtitle>
+    <strong>Navbodh Tower</strong> is a modern, government-approved commercial complex designed to cater to the diverse needs of today’s businesses. 
+    Strategically located in the bustling area of Shankar Nagar, Raipur (C.G.), it offers premium commercial spaces that provide excellent visibility, seamless connectivity, and world-class infrastructure.
+  </SectionSubtitle>
 
-Navbodh Tower    A Unique Commercial Hub is a modern, government-approved commercial complex designed to meet the needs of today’s businesses. Strategically located in Shankar Nagar, Raipur (C.G.), it offers premium commercial spaces with excellent visibility, connectivity, and infrastructure
-        </SectionSubtitle>
-      </Section>
+  <SectionSubtitle>
+    With its cutting-edge design and flexible space options, Navbodh Tower is poised to become the go-to destination for businesses looking to thrive in a dynamic and growing market.
+  </SectionSubtitle>
+</Section>
+
 
       {/* MISSION & VISION */}
       <Section>
@@ -370,8 +407,103 @@ Navbodh Tower    A Unique Commercial Hub is a modern, government-approved commer
         </CardsContainer>
       </Section>
 
+
+
+
+
+
+{/* BUILDING MAP & FEATURES */}
+<Section>
+  <SectionTitle>Building Blueprint & Features</SectionTitle>
+  <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+    {/* Blueprint image */}
+    <img
+      src={map}
+      alt="Full Building Blueprint"
+      style={{
+        width: "100%",  // Reduced width for a smaller image
+        maxWidth: "1300px",  // Set maximum width to 800px
+        borderRadius: "10px",
+        marginBottom: "1rem",
+      }}
+    />
+    {/* Key Features */}
+    <ul style={{ listStyle: "disc", paddingLeft: "1.5rem", color: "#f5b301", fontSize: "1.1rem" }}>
+      <li>Well-planned office spaces suitable for various businesses</li>
+      <li>Flexible layouts for customization</li>
+      <li>Modern infrastructure with safety compliance</li>
+      <li>Prime commercial location with excellent connectivity</li>
+      <li>Ample parking and security features</li>
+    </ul>
+  </div>
+</Section>
+
+{/* PLOT SIZE CARDS */}
+<Section>
+  <SectionTitle>Available Plot Sizes</SectionTitle>
+  <CardsContainer>
+    {/* 1500 sq.ft plot card */}
+    <ServiceCard
+      key="1500sq"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={fadeUp}
+      whileHover={{
+        scale: 1.08,
+        y: -5,
+        boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+      }}
+    >
+      <CardTitle>Corporate Setup (1500 sq.ft)</CardTitle>
+      <CardDesc>
+        Spacious commercial floors suitable for banks, consultancies, and large enterprises.
+      </CardDesc>
+      <p>
+        <strong>Plot Size:</strong> 1500 sq.ft
+      </p>
+      <img
+        src={smallsq}
+        alt="1500 sq.ft Setup"
+        style={{ width: "100%", borderRadius: "10px", marginTop: "1rem",height:"480px" }}
+      />
+    
+    </ServiceCard>
+
+    {/* 3100 sq.ft plot card */}
+    <ServiceCard
+      key="3100sq"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={fadeUp}
+      whileHover={{
+        scale: 1.08,
+        y: -5,
+        boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+      }}
+    >
+      <CardTitle>Corporate Setup (3100 sq.ft)</CardTitle>
+      <CardDesc>
+        Spacious commercial floors suitable for banks, consultancies, and large enterprises.
+      </CardDesc>
+      <p>
+        <strong>Plot Size:</strong> 3100 sq.ft
+      </p>
+      <img
+        src={largesq}
+        alt="3100 sq.ft Setup"
+        style={{ width: "100%", borderRadius: "10px", marginTop: "1rem" , height:"480px"  }}
+      />
+    
+    </ServiceCard>
+  </CardsContainer>
+</Section>
+
+
+
       {/* SERVICES */}
-      <Section>
+      {/* <Section>
         <SectionTitle>What We Offer</SectionTitle>
         <CardsContainer>
           {services.map((s, i) => (
@@ -393,7 +525,7 @@ Navbodh Tower    A Unique Commercial Hub is a modern, government-approved commer
             </ServiceCard>
           ))}
         </CardsContainer>
-      </Section>
+      </Section> */}
 
       {/* WHY CHOOSE US */}
       <Section>
@@ -447,7 +579,7 @@ Navbodh Tower    A Unique Commercial Hub is a modern, government-approved commer
       </Section>
 
       {/* FOUNDER */}
-      <FounderSectionWrapper>
+      {/* <FounderSectionWrapper>
         <SectionTitle>Our Founder</SectionTitle>
         <FounderCard
           initial="hidden"
@@ -463,7 +595,7 @@ Navbodh Tower    A Unique Commercial Hub is a modern, government-approved commer
             <FounderAbout>{founder.about}</FounderAbout>
           </FounderInfo>
         </FounderCard>
-      </FounderSectionWrapper>
+      </FounderSectionWrapper> */}
 
       {/* LOCATION & CONTACT */}
       <Section>

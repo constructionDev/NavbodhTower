@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import Footer from "../components/Footer";
-import premiumspace from "../assets/premiumspace.jpg";
-import RetailShowroom from "../assets/RetailShowroom.jpg";
+import premiumspace from "../assets/Shivayan.png";
+import RetailShowroom from "../assets/lalchand.png";
 import Warehouse from "../assets/Warehouse.jpg";
 import tower from "../assets/tower.jpeg";
 import coworking from "../assets/coworking.jfif";
@@ -63,7 +63,7 @@ const ProjectCard = styled(motion.div)`
 
 const ProjectImage = styled.img`
   width: 100%;
-  height: 180px;
+  height: 380px;
   object-fit: cover;
   transition: transform 0.4s ease;
 
