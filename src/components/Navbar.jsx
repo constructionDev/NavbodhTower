@@ -126,8 +126,6 @@ const Navbar = ({ theme, toggleTheme }) => {
         <NavItem><NavLink to="/gallery" onClick={closeMenu}>Gallery</NavLink></NavItem>
         <NavItem><NavLink to="/contact" onClick={closeMenu}>Contact</NavLink></NavItem>
       </NavLinks>
-
-   
     </Nav>
   );
 };

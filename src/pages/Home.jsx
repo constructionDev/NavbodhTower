@@ -26,12 +26,9 @@ import siteVisitAnimation from "../assets/lottie/site-visit3.json";
 import documentationAnimation from "../assets/lottie/documentation.json";
 import testimonialAnimation from "../assets/lottie/profile.json";
 import ctaAnimation from "../assets/lottie/Customer Support.json";
-import sq1500 from "../assets/1500.jpg";
 import sq3000 from "../assets/3000SQ.jpg";
-import premiumspace from "../assets/premiumspace.jpg";
-import RetailShowroom from "../assets/RetailShowroom.jpg";
-import Warehouse from "../assets/Warehouse.jpg";
-
+import P15 from "../assets/NT/P15.jpeg";
+import P3000 from "../assets/NT/P2.jpeg";
 /* ================= ANIMATIONS ================= */
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -276,7 +273,7 @@ const CardImage = styled.img`
   border-radius: 15px;
   margin-bottom: 1rem;
   transition: transform 0.4s ease;
-
+  height: 350px;
   ${Card}:hover & {
     transform: scale(1.08);
   }
@@ -483,12 +480,12 @@ const aboutContent = [
 const properties = [
   {
     title: "Commercial Office Space – 1500 Sq. Ft.",
-    image: sq1500,
+    image: P15,
     text: "Government-approved commercial space on the 1st floor...",
   },
   {
     title: "Commercial Office Space – 3100 Sq. Ft.",
-    image: sq3000,
+    image: P3000,
     text: "Spacious commercial area on the 2nd floor...",
   },
   {

@@ -2,183 +2,287 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import brochure from "../assets/brochure.pdf";
-import Footer from "../components/Footer"; // Import the footer
+import Footer from "../components/Footer";
 
-// Container
-const Container = styled.div`
-  padding: 2rem 5%;
-`;
+// Images
+import tower from "../assets/NT/tower.jpeg";
+import tower2 from "../assets/NT/tower2.png";
+import B1 from "../assets/NT/b1.jpeg";
+import B2 from "../assets/NT/b2.jpeg";
+import B3 from "../assets/NT/b3.jpeg";
+import B4 from "../assets/NT/b4.jpeg";
+import B5 from "../assets/NT/b5.jpeg";
+import B6 from "../assets/NT/b6.jpeg";
+import E1 from "../assets/NT/E1.jpeg";
+import E2 from "../assets/NT/E2.jpeg";
+import E3 from "../assets/NT/E3.jpeg";
+import E4 from "../assets/NT/E4.jpeg";
+import I1 from "../assets/NT/I1.jpeg";
+import L1 from "../assets/NT/L1.jpeg";
+import L2 from "../assets/NT/L2.jpeg";
+import P1 from "../assets/NT/P1.jpeg";
+import s1 from "../assets/NT/s1.png";
+// Videos
+import V1 from "../assets/NT/V1.mp4";
+import V2 from "../assets/NT/V2.mp4";
+import V3 from "../assets/NT/V3.mp4";
+import V4 from "../assets/NT/V4.mp4";
+import V5 from "../assets/NT/V5.mp4";
+import V6 from "../assets/NT/V6.mp4";
 
-// Page Title
-const Title = styled.h1`
-  font-size: 2.5rem;
-  color: ${({ theme }) => theme.primary};
-  margin-bottom: 2rem;
+// ================= STYLES =================
+
+const Hero = styled.section`
+  height: 60vh;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url(${P1}) center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  color: #fff;
 `;
 
-// Filter Buttons
+const HeroTitle = styled.h1`
+  font-size: 3rem;
+  font-weight: 700;
+`;
+
+const HeroSubtitle = styled.p`
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  opacity: 0.9;
+`;
+
+const Container = styled.div`
+  padding: 4rem 5%;
+`;
+
+const Title = styled.h2`
+  font-size: 2.4rem;
+  color: ${({ theme }) => theme.primary};
+  text-align: center;
+  margin-bottom: 2rem;
+`;
+
 const FilterContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   flex-wrap: wrap;
 `;
 
 const FilterButton = styled.button`
-  padding: 0.6rem 1.2rem;
-  border-radius: 25px;
-  border: none;
-  background: ${({ active, theme }) => (active ? theme.primary : "#eee")};
-  color: ${({ active }) => (active ? "#fff" : "#333")};
+  padding: 0.7rem 1.8rem;
+  border-radius: 30px;
+  border: 1px solid ${({ theme }) => theme.primary};
+  background: ${({ active, theme }) =>
+    active ? theme.primary : "transparent"};
+  color: ${({ active, theme }) =>
+    active ? "#fff" : theme.primary};
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 
   &:hover {
-    opacity: 0.85;
+    background: ${({ theme }) => theme.primary};
+    color: #fff;
   }
 `;
 
-// Gallery Grid
 const GalleryGrid = styled.section`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
 `;
 
-// Image Card with overlay
-const ImageCard = styled(motion.div)`
+const Card = styled(motion.div)`
   position: relative;
   overflow: hidden;
-  border-radius: 15px;
+  border-radius: 18px;
   cursor: pointer;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 
-  img {
+  img,
+  video {
     width: 100%;
-    height: 180px;
+    height: 220px;
     object-fit: cover;
-    transition: transform 0.4s ease, filter 0.4s ease;
-    border-radius: 15px;
+    transition: transform 0.6s ease;
   }
 
-  &:hover img {
-    transform: scale(1.05);
-    filter: brightness(0.8);
+  &:hover img,
+  &:hover video {
+    transform: scale(1.08);
+  }
+
+  &:hover div {
+    opacity: 1;
+    transform: translateY(0);
   }
 `;
 
-// Overlay text
 const Overlay = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 0.5rem 1rem;
-  background: rgba(0,0,0,0.6);
+  padding: 1rem;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0)
+  );
   color: #fff;
-  font-weight: 500;
-  text-align: center;
+  font-size: 1rem;
   opacity: 0;
-  transition: opacity 0.3s ease;
-
-  ${ImageCard}:hover & {
-    opacity: 1;
-  }
+  transform: translateY(10px);
+  transition: 0.4s ease;
 `;
 
-// CTA Section
 const CTASection = styled.div`
-  margin-top: 3rem;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+  margin-top: 5rem;
+  padding: 3rem 1rem;
+  background: #f8f8f8;
+  border-radius: 20px;
+  text-align: center;
+`;
+
+const CTAText = styled.p`
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #555;
 `;
 
 const DownloadButton = styled.a`
+  display: inline-block;
   background: ${({ theme }) => theme.primary};
   color: #fff;
-  padding: 0.7rem 1.5rem;
-  border-radius: 10px;
+  padding: 0.9rem 2.5rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
   text-decoration: none;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 
   &:hover {
-    opacity: 0.85;
     transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
   }
 `;
 
-// Framer Motion Variants
-const imageVariants = {
-  offscreen: { opacity: 0, scale: 0.8 },
-  onscreen: { 
-    opacity: 1, 
+// ================= ANIMATION =================
+
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.92 },
+  visible: {
+    opacity: 1,
     scale: 1,
-    transition: { type: "spring", bounce: 0.3, duration: 0.8 }
-  }
+    transition: { duration: 0.5 },
+  },
 };
 
-// Gallery Component
+// ================= COMPONENT =================
+
 const Gallery = () => {
   const [filter, setFilter] = useState("All");
 
-  const images = [
-    { src: "https://images.unsplash.com/photo-1581091012184-7cae60a95d3a?crop=entropy&cs=tinysrgb&fit=max&w=400", title: "Office 1", category: "Office" },
-    { src: "https://images.unsplash.com/photo-1599423300746-b62533397364?crop=entropy&cs=tinysrgb&fit=max&w=400", title: "Office 2", category: "Office" },
-    { src: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?crop=entropy&cs=tinysrgb&fit=max&w=400", title: "Retail 1", category: "Retail" },
-    { src: "https://images.unsplash.com/photo-1556741533-f6acd647d2fb?crop=entropy&cs=tinysrgb&fit=max&w=400", title: "Retail 2", category: "Retail" },
-    { src: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&w=400", title: "Corporate 1", category: "Corporate" },
-    { src: "https://images.unsplash.com/photo-1521791136064-7986c2920216?crop=entropy&cs=tinysrgb&fit=max&w=400", title: "Corporate 2", category: "Corporate" },
-    { src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?crop=entropy&cs=tinysrgb&fit=max&w=400", title: "Office 3", category: "Office" },
-    { src: "https://images.unsplash.com/photo-1581091215368-5eec8d75d64c?crop=entropy&cs=tinysrgb&fit=max&w=400", title: "Retail 3", category: "Retail" },
+  const items = [
+    { src: E4, type: "image", title: "" },
+    { src: tower, type: "image", title: "" },
+    { src: B1, type: "image", title: "" },
+    { src: L2, type: "image", title: "" },
+    { src: B2, type: "image", title: "" },
+    { src: tower2, type: "image", title: "" },
+    { src: B3, type: "image", title: "" },
+    { src: E3, type: "image", title: "" },
+    { src: B4, type: "image", title: "" },
+    { src: B5, type: "image", title: "" },
+    { src: B6, type: "image", title: "" },
+    { src: E1, type: "image", title: "" },
+    { src: E2, type: "image", title: "" },
+    { src: I1, type: "image", title: "" },
+    { src: L1, type: "image", title: ""},
+    { src: P1, type: "image", title: "" },
+    { src: V6, type: "video", title: "" },
+    { src: V1, type: "video", title: "" },
+    { src: V2, type: "video", title: "" },
+    { src: V3, type: "video", title: "" },
+    { src: V4, type: "video", title: "" },
+    { src: V5, type: "video", title: "" },
   ];
 
-  const filteredImages = filter === "All" ? images : images.filter(img => img.category === filter);
+  const filteredItems =
+    filter === "All"
+      ? items
+      : items.filter((item) => item.type === filter.toLowerCase());
 
   return (
     <>
+      <Hero>
+        <div>
+          <HeroTitle>Premium Commercial Spaces</HeroTitle>
+          <HeroSubtitle>Offices • Retail • Business Hubs</HeroSubtitle>
+        </div>
+      </Hero>
+
       <Container>
-        <Title>Gallery</Title>
+        <Title>Project Gallery</Title>
 
         <FilterContainer>
-          {["All", "Office", "Retail", "Corporate"].map((cat) => (
+          {["All", "Image", "Video"].map((btn) => (
             <FilterButton
-              key={cat}
-              active={filter === cat}
-              onClick={() => setFilter(cat)}
+              key={btn}
+              active={filter === btn}
+              onClick={() => setFilter(btn)}
             >
-              {cat}
+              {btn}
             </FilterButton>
           ))}
         </FilterContainer>
 
         <GalleryGrid>
-          {filteredImages.map((img, index) => (
-            <ImageCard
+          {filteredItems.map((item, index) => (
+            <Card
               key={index}
-              variants={imageVariants}
-              initial="offscreen"
-              whileInView="onscreen"
-              viewport={{ once: true, amount: 0.5 }}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
             >
-              <img src={img.src} alt={img.title} />
-              <Overlay>{img.title}</Overlay>
-            </ImageCard>
+              {item.type === "image" ? (
+                <img src={item.src} alt={item.title} />
+              ) : (
+                <video
+                  src={item.src}
+                  autoPlay
+                  muted
+                  loop
+                  controls
+                  playsInline
+                  onLoadedMetadata={(e) => {
+                    e.currentTarget.playbackRate = 0.75;
+                  }}
+                />
+              )}
+              <Overlay>{item.title}</Overlay>
+            </Card>
           ))}
         </GalleryGrid>
 
         <CTASection>
+          <CTAText>
+            Explore floor plans, amenities, pricing & investment opportunities
+          </CTAText>
           <DownloadButton href={brochure} download>
             Download Brochure
           </DownloadButton>
         </CTASection>
       </Container>
 
-      {/* Footer */}
       <Footer />
     </>
   );

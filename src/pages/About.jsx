@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import brochure from "../assets/brochure.pdf";
 import Footer from "../components/Footer";
-import bgVideo from '../assets/bg.mp4';
+import bgVideo from '../assets/aboutbg.mp4';
 import map from "../assets/map2.png";
 import smallsq from "../assets/1500sq.jfif";
 import largesq from "../assets/3100sq.jfif";

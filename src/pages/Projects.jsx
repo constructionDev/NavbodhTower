@@ -171,19 +171,19 @@ const Projects = () => {
       title: "Shivayan Health Care Pvt",
       // desc: "Modern office with high-end amenities.",
       img: premiumspace,
-      link: "https://example.com/office",
+      link: "#",
     },
     {
       title: "Lalchand Heights",
       // desc: "High visibility retail location in city center.",
       img: RetailShowroom,
-      link: "https://example.com/retail",
+      link: "#",
     },
     {
       title: "Navbodh Tower",
       // desc: "Luxury corporate building with multiple floors.",
       img: tower,
-      link: "https://example.com/corporate",
+      link: "#",
     },
     // {
     //   title: "Co-working Space",
@@ -269,10 +269,10 @@ const Projects = () => {
               <ProjectDesc>{project.desc}</ProjectDesc>
               <VisitButton
                 href={project.link}
-                target="_blank"
+                target=""
                 rel="noopener noreferrer"
               >
-                Visit Project
+                Know More
               </VisitButton>
             </ProjectContent>
           </ProjectCard>
