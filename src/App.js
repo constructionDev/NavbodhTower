@@ -9,6 +9,8 @@ import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsConditions from "./pages/TermsConditions";
 
 // Navbodh Tower Themes
 const lightTheme = {
@@ -62,6 +64,8 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
+           <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+  <Route path="/terms" element={<TermsConditions />} />
         </Routes>
       </Router>
     </ThemeProvider>

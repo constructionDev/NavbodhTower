@@ -719,29 +719,33 @@ const Home = () => {
       </TestimonialSection>
 
       {/* CTA */}
-      <CTA
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeUp}
-      >
-        <CTALottie>
-          <Lottie animationData={ctaAnimation} loop />
-        </CTALottie>
-        <h2>Ready to Elevate Your Business?</h2>
-        <p>
-          Contact Navbodh Tower today for premium commercial spaces tailored to
-          your needs.
-        </p>
-        <Button
-          primary
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          style={{ marginTop: "1.5rem" }}
-        >
-          Get in Touch
-        </Button>
-      </CTA>
+<CTA
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  variants={fadeUp}
+>
+  <CTALottie>
+    <Lottie animationData={ctaAnimation} loop />
+  </CTALottie>
+  <h2>Ready to Elevate Your Business?</h2>
+  <p>
+    Contact Navbodh Tower today for premium commercial spaces tailored to
+    your needs.
+  </p>
+  
+  <a href="tel:75910-66666" style={{ textDecoration: "none" }}>
+    <Button
+      primary
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+      style={{ marginTop: "1.5rem" }}
+    >
+      Get in Touch
+    </Button>
+  </a>
+</CTA>
+
 
       {/* FOOTER */}
       <Footer />

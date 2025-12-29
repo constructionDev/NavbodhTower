@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaMailBulk, FaTwitter } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
+import { Link } from "react-router-dom";
 
 // ======= FOOTER CONTAINER =======
 const FooterContainer = styled.footer`
@@ -159,10 +160,11 @@ const Footer = () => {
 
       {/* Bottom Section */}
       <BottomSection>
-        <p>© 2025 Navbodh Tower | All Rights Reserved</p>
+      <p>© {new Date().getFullYear()} Navbodh Tower | All Rights Reserved</p>
+
         <div>
-          <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms & Conditions</a>
-        </div>
+  <Link to="/PrivacyPolicy">Privacy Policy</Link> | <Link to="/terms">Terms & Conditions</Link>
+</div>
       </BottomSection>
     </FooterContainer>
   );
