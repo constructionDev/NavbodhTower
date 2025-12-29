@@ -300,12 +300,11 @@ Featuring contemporary architecture, superior construction quality, and smartly 
               onClick={() => setSelectedProject(null)}
               style={{
                 position: "absolute",
-                top: "1rem",
-                right: "1rem",
+                top: "0rem",
+                right: "20px",
                 background: "#dd0808ff",
                 color: "#fff",
                 border: "none",
-                borderRadius: "50%",
                 width: "40px",
                 height: "40px",
                 fontWeight: "bold",
