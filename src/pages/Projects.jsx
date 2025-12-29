@@ -301,7 +301,7 @@ Featuring contemporary architecture, superior construction quality, and smartly 
               style={{
                 position: "absolute",
                 top: "0rem",
-                right: "20px",
+                right: "0",
                 background: "#dd0808ff",
                 color: "#fff",
                 border: "none",
