@@ -161,10 +161,13 @@ const Footer = () => {
       {/* Bottom Section */}
       <BottomSection>
       <p>© {new Date().getFullYear()} Navbodh Tower | All Rights Reserved</p>
-
+<p style={{ fontSize: "0.85rem", opacity: 0.8 }}>
+    Developed by <strong>Naman Jain</strong>
+  </p>
         <div>
   <Link to="/PrivacyPolicy">Privacy Policy</Link> | <Link to="/terms">Terms & Conditions</Link>
 </div>
+  
       </BottomSection>
     </FooterContainer>
   );

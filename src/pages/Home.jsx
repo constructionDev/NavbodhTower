@@ -358,7 +358,7 @@ const TestimonialLottie = styled.div`
 
 /* ================= CTA ================= */
 const CTA = styled(motion.section)`
-  background: linear-gradient(135deg, #0e1a42, #081421);
+  background: linear-gradient(135deg, #0e1a42, #061341);
   color: white;
   padding: 4rem 2rem;
   border-radius: 30px;
