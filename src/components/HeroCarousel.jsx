@@ -8,10 +8,6 @@ import img4 from '../assets/S44.png';
 import img5 from '../assets/s5.png';
 
 
-
-
-
-
 const images = [
 img1,
 img2,
