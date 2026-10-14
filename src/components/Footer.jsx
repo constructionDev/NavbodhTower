@@ -162,7 +162,7 @@ const Footer = () => {
       <BottomSection>
       <p>© {new Date().getFullYear()} Navbodh Tower | All Rights Reserved</p>
 <p style={{ fontSize: "0.85rem", opacity: 0.8 }}>
-    Developed by <strong><a href="https://namanjainottportfolio.netlify.app/">Naman Jain</a></strong>
+    Developed by <strong><a href="https://namanjain-rho.vercel.app/" >Naman Jain</a></strong>
   </p>
         <div>
   <Link to="/PrivacyPolicy">Privacy Policy</Link> | <Link to="/terms">Terms & Conditions</Link>
