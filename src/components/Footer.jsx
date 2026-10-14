@@ -134,8 +134,8 @@ const Footer = () => {
         <Links>
           <h3>Quick Links</h3>
           <a href="/">Home</a>
-          <a href="/about">About Us</a>
-          <a href="/projects">Projects</a>
+          <a href="/about">About Us </a>
+          <a href="/projects">Projects </a>
           <a href="/gallery">Gallery</a>
           <a href="/contact">Contact</a>
         </Links>
