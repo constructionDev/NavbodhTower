@@ -1,5 +1,3 @@
-@'
 [submodule "modern-website"]
     path = modern-website
     url = https://github.com/constructionDev/NavbodhTower.git
-'@ | Set-Content -Encoding ascii .gitmodules
